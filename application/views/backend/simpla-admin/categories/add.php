@@ -15,17 +15,17 @@
     </div> <!-- End .content-box-header -->
 
     <div class="content-box-content">
-        <?php echo validation_errors(); ?>
         <form action="categories/add" method="post">
             <fieldset>
                 <p>
                     <label>Title</label>
                     <input class="text-input large-input" type="text" id="large-input" name="title" value="<?= set_value('title',isset($cat)?$cat['title']:'')?>"/>
-                    <span class="input-notification error png_bg">Error message</span>
+                    <?php echo form_error('title', '<span class="input-notification error png_bg">', '</span>'); ?>
                 </p>
                 <p>
                     <label>Description</label>
                     <textarea class="text-input textarea wysiwyg" id="textarea" name="description" cols="79" rows="15" value="<?= isset($cat)?$cat['description']:''?>"></textarea>
+                    <?php echo form_error('title', '<span class="input-notification error png_bg">', '</span>'); ?>
                 </p>
 
                 <p>

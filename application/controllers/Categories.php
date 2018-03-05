@@ -64,11 +64,11 @@ class Categories extends CI_Controller {
             if($this->input->post('submit') == 'Thêm mới'){
                 $this->form_validation->set_rules('title', 'Tiêu đề', 'trim|required');
                 $this->form_validation->set_rules('description', 'Mô tả chung', 'trim|required');
-                $this->form_validation->set_error_delimiters('<div
-                        class="notification error png_bg">
-				            <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" 
-				            title="Close this notification" alt="close" /></a>
-				            <div>', '</div></div>');
+//                $this->form_validation->set_error_delimiters('<div
+//                        class="notification error png_bg">
+//				            <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png"
+//				            title="Close this notification" alt="close" /></a>
+//				            <div>', '</div></div>');
                 if ($this->form_validation->run() == true)
                 {
                     $title = $this->input->post('title');
