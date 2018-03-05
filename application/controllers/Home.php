@@ -90,4 +90,27 @@ class Home extends CI_Controller {
         }
         $this->output->enable_profiler(true);
     }
+
+    public function testemail(){
+        $this->load->library('email');
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+
+        $this->email->from('vtphong651043@gmail.com', 'Phongvt');
+        $this->email->to('xembongda0218@gmail.com');
+        $this->email->cc('phongvt3110@gmail.com');
+        $this->email->bcc('');
+
+        $this->email->subject('Email Test on ' . date('d-m-Y H:i:s'));
+        $this->email->message('Testing the email class.' . date('d-m-Y H:i:s'));
+
+        //Send mail
+        if($this->email->send()){
+            $this->session->set_flashdata("email_sent","Email sent successfully.");
+            echo 'Email sent successfully.';
+        }
+        else {
+            $this->session->set_flashdata("email_sent","Error in sending Email.");
+            echo 'Error in sending Email.';
+        }
+    }
 }

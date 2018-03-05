@@ -21,6 +21,7 @@
                 <p>
                     <label>Title</label>
                     <input class="text-input large-input" type="text" id="large-input" name="title" value="<?= set_value('title',isset($cat)?$cat['title']:'')?>"/>
+                    <span class="input-notification error png_bg">Error message</span>
                 </p>
                 <p>
                     <label>Description</label>
