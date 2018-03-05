@@ -15,6 +15,7 @@
     </div> <!-- End .content-box-header -->
 
     <div class="content-box-content">
+        <?php echo validation_errors(); ?>
         <form action="categories/add" method="post">
             <fieldset>
                 <p>
