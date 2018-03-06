@@ -89,23 +89,18 @@ class Categories extends CI_Controller {
     }
 
     public function edit(){
-        $id = $this->input->get('id');
-        $cat = $this->db->get_where('categories',['id' => $id])->first_row();
         if($this->session->has_userdata('user')){
             $data['user'] = $this->session->userdata('user');
+            $id = $this->input->get('id');
+            $cat = $this->db->get_where('categories',['id' => $id])->first_row();
+            $data['content'] = 'backend/simpla-admin/categories/add';
+            $data['active'] = 'admin-categories';
+            $data['mode'] = 'edit';
+            $data['cat'] = (array)$cat;
+            $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
         } else {
-            $data['user'] = array(
-                'id' => 1,
-                'name' => 'Anonymous',
-                'email' => 'anonymous@gmail.com',
-                'phone' => '0983397580'
-            );
+            redirect('admin/login');
         }
-        $data['content'] = 'backend/simpla-admin/categories/add';
-        $data['active'] = 'admin-categories';
-        $data['cat'] = (array)$cat;
-        $data['mode'] = 'edit';
-        $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
     }
 
     public function _title($value = ''){

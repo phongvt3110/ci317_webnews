@@ -24,7 +24,7 @@
                 </p>
                 <p>
                     <label>Description</label>
-                    <textarea class="text-input textarea wysiwyg" id="textarea" name="description" cols="79" rows="15" value="<?= isset($cat)?$cat['description']:''?>"></textarea>
+                    <textarea class="text-input textarea wysiwyg" id="textarea" name="description" cols="79" rows="15" value="<?= set_value('description',isset($cat)?$cat['description']:'')?>"></textarea>
                     <?php echo form_error('description', '<span class="input-notification error png_bg">', '</span>'); ?>
                 </p>
 
