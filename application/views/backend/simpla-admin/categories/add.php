@@ -17,6 +17,16 @@
     <div class="content-box-content">
         <form action="categories/add" method="post">
             <fieldset>
+                <?php
+                    if(isset($mode) && isset($cat) && $mode=='edit'){
+                        $data = array(
+                            'hidden'      => 'hidden',
+                            'name'        => 'id',
+                            'value'       => $cat['id'],
+                        );
+                        echo form_input($data);
+                    }
+                ?>
                 <p>
                     <label>Title</label>
                     <input class="text-input large-input" type="text" id="large-input" name="title" value="<?= set_value('title',isset($cat)?$cat['title']:'')?>"/>
@@ -24,7 +34,18 @@
                 </p>
                 <p>
                     <label>Description</label>
-                    <textarea class="text-input textarea wysiwyg" id="textarea" name="description" cols="79" rows="15" value="<?= set_value('description',isset($cat)?$cat['description']:'')?>"></textarea>
+                    <textarea class="text-input textarea wysiwyg" id="textarea" name="description" cols="79" rows="15"> <?= set_value('description',isset($cat)?$cat['description']:'')?></textarea>
+                    <?php
+//                        $data = array(
+//                            'name'        => 'description',
+//                            'id'          => 'textarea',
+//                            'value'       => isset($cat)?$cat['description']:'',
+//                            'rows'        => '15',
+//                            'cols'        => '79',
+//                            'class'       => 'text-input textarea wysiwyg',
+//                        );
+//                        echo form_textarea($data);
+                    ?>
                     <?php echo form_error('description', '<span class="input-notification error png_bg">', '</span>'); ?>
                 </p>
 

@@ -74,12 +74,29 @@ class Categories extends CI_Controller {
                     $title = $this->input->post('title');
                     $description = $this->input->post('description');
                     $this->db->insert('categories',['title' => $title,'description' => $description]);
-                    redirect('categories/index');
+                    redirect('categories/listcat');
                 } else {
                     $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
                 }
             } else if($this->input->post('submit') == 'Cập nhật') {
-                redirect('categories/index');
+                $id = $this->input->post('id');
+                $this->form_validation->set_rules('title', 'Tiêu đề', 'trim|required|min_length[5]|max_length[255]|callback__title');
+                $this->form_validation->set_rules('description', 'Mô tả chung', 'trim|required|min_length[5]|max_length[255]');
+                if ($this->form_validation->run() == true)
+                {
+                    $title = $this->input->post('title');
+                    $description = $this->input->post('description');
+                    $updated_at  = date('Y-m-d H:i:s');
+                    $this->db->update('categories',['title' => $title,'description' => $description, 'updated_at' => $updated_at],['id'=>$id]);
+                    redirect('categories/listcat');
+                } else {
+                    $cat = $this->db->get_where('categories',['id' => $id])->first_row();
+                    $data['content'] = 'backend/simpla-admin/categories/add';
+                    $data['active'] = 'admin-categories';
+                    $data['mode'] = 'edit';
+                    $data['cat'] = (array)$cat;
+                    $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
+                }
             } else {
                 $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
             }
@@ -98,6 +115,17 @@ class Categories extends CI_Controller {
             $data['mode'] = 'edit';
             $data['cat'] = (array)$cat;
             $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
+        } else {
+            redirect('admin/login');
+        }
+    }
+
+    public function delete(){
+        if($this->session->has_userdata('user')){
+            $data['user'] = $this->session->userdata('user');
+            $id = $this->input->get('id');
+            $this->db->delete('categories',['id' => $id]);
+            redirect('categories/listcat');
         } else {
             redirect('admin/login');
         }

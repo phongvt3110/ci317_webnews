@@ -69,7 +69,7 @@
                             <!-- Icons -->
                             <a href="admin/categories/edit?id=<?= $row['id']?>" title="Edit"><img src="public/simpla-admin/resources/images/icons/pencil.png"
                                                           alt="Edit"/></a>
-                            <a href="#" title="Delete"><img src="public/simpla-admin/resources/images/icons/cross.png"
+                            <a href="admin/categories/delete?id=<?= $row['id']?>" title="Delete"><img src="public/simpla-admin/resources/images/icons/cross.png"
                                                             alt="Delete"/></a>
                             <a href="#" title="Edit Meta"><img
                                         src="public/simpla-admin/resources/images/icons/hammer_screwdriver.png"
