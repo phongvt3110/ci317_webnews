@@ -62,8 +62,8 @@ class Categories extends CI_Controller {
             $data['active'] = 'admin-categories';
             $data['item_active'] = 'categories-add';
             if($this->input->post('submit') == 'Thêm mới'){
-                $this->form_validation->set_rules('title', 'Tiêu đề', 'trim|required');
-                $this->form_validation->set_rules('description', 'Mô tả chung', 'trim|required');
+                $this->form_validation->set_rules('title', 'Tiêu đề', 'trim|required|min_length[5]|max_length[255]|callback__title');
+                $this->form_validation->set_rules('description', 'Mô tả chung', 'trim|required|min_length[5]|max_length[255]');
 //                $this->form_validation->set_error_delimiters('<div
 //                        class="notification error png_bg">
 //				            <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png"
@@ -106,5 +106,14 @@ class Categories extends CI_Controller {
         $data['cat'] = (array)$cat;
         $data['mode'] = 'edit';
         $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
+    }
+
+    public function _title($value = ''){
+        $data = ['admin','Admin','administrator','Administrator'];
+        if(in_array($value, $data)) {
+            $this->form_validation->set_message('_title',$value . ' Không thể dùng làm Tiêu đề');
+            return false;
+        }
+        return true;
     }
 }
