@@ -22,7 +22,6 @@
                 <th><input class="check-all" type="checkbox" /></th>
                 <th>Title</th>
                 <th>Description</th>
-                <th>Article Id</th>
                 <th>Created at</th>
                 <th>Updated at</th>
                 <th></th>
@@ -63,7 +62,6 @@
                             echo '<td hidden>' . $row['id'] . '</td>';
                             echo '<td>' . $row['title'] . '</td>';
                             echo '<td>' . $row['description'] . '</td>';
-                            echo '<td>' . $row['aid'] . '</td>';
                             echo '<td>' . date('d/m/Y',strtotime($row['created_at'])) . '</td>';
                             echo '<td>' . DateTime::createFromFormat('Y-m-d H:i:s',$row['updated_at'])->format('d/m/Y'). '</td>';
                         ?>
