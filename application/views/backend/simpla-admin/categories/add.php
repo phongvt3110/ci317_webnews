@@ -33,6 +33,11 @@
                     <?php echo form_error('title', '<span class="input-notification error png_bg">', '</span>'); ?>
                 </p>
                 <p>
+                    <label>AId</label>
+                    <input class="text-input large-input" type="text" id="large-input" name="aid" value="<?= set_value('aid',isset($cat)?$cat['aid']:'')?>"/>
+                    <?php echo form_error('aid', '<span class="input-notification error png_bg">', '</span>'); ?>
+                </p>
+                <p>
                     <label>Description</label>
                     <textarea class="text-input textarea wysiwyg" id="textarea" name="description" cols="79" rows="15"> <?= set_value('description',isset($cat)?$cat['description']:'')?></textarea>
                     <?php

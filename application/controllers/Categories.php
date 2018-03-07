@@ -63,6 +63,7 @@ class Categories extends CI_Controller {
             $data['item_active'] = 'categories-add';
             if($this->input->post('submit') == 'Thêm mới'){
                 $this->form_validation->set_rules('title', 'Tiêu đề', 'trim|required|min_length[5]|max_length[255]|callback__title');
+                $this->form_validation->set_rules('aid', 'article Id', 'trim|required|max_length[11]|integer|callback__checkAid');
                 $this->form_validation->set_rules('description', 'Mô tả chung', 'trim|required|min_length[5]|max_length[255]');
 //                $this->form_validation->set_error_delimiters('<div
 //                        class="notification error png_bg">
@@ -73,7 +74,8 @@ class Categories extends CI_Controller {
                 {
                     $title = $this->input->post('title');
                     $description = $this->input->post('description');
-                    $this->db->insert('categories',['title' => $title,'description' => $description]);
+                    $aid = $this->input->post('aid');
+                    $this->db->insert('categories',['title' => $title,'description' => $description,'aid'=>$aid]);
                     redirect('categories/listcat');
                 } else {
                     $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
@@ -81,13 +83,15 @@ class Categories extends CI_Controller {
             } else if($this->input->post('submit') == 'Cập nhật') {
                 $id = $this->input->post('id');
                 $this->form_validation->set_rules('title', 'Tiêu đề', 'trim|required|min_length[5]|max_length[255]|callback__title');
+                $this->form_validation->set_rules('aid', 'article Id', 'trim|required|max_length[11]|integer|callback__checkAid');
                 $this->form_validation->set_rules('description', 'Mô tả chung', 'trim|required|min_length[5]|max_length[255]');
                 if ($this->form_validation->run() == true)
                 {
                     $title = $this->input->post('title');
                     $description = $this->input->post('description');
+                    $aid = $this->input->post('aid');
                     $updated_at  = date('Y-m-d H:i:s');
-                    $this->db->update('categories',['title' => $title,'description' => $description, 'updated_at' => $updated_at],['id'=>$id]);
+                    $this->db->update('categories',['title' => $title,'description' => $description, 'aid' => $aid, 'updated_at' => $updated_at],['id'=>$id]);
                     redirect('categories/listcat');
                 } else {
                     $cat = $this->db->get_where('categories',['id' => $id])->first_row();
@@ -135,6 +139,15 @@ class Categories extends CI_Controller {
         $data = ['admin','Admin','administrator','Administrator'];
         if(in_array($value, $data)) {
             $this->form_validation->set_message('_title',$value . ' Không thể dùng làm Tiêu đề');
+            return false;
+        }
+        return true;
+    }
+
+    public function _checkAid($value= ''){
+        $cat = $this->db->get_where('categories',['aid'=> $value])->first_row();
+        if(!isset($cat)){
+            $this->form_validation->set_message('_checkAid',' Không tìm thấy aid = ' . $value);
             return false;
         }
         return true;
