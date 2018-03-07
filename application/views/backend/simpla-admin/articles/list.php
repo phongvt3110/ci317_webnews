@@ -20,11 +20,12 @@
             <thead>
             <tr>
                 <th><input class="check-all" type="checkbox" /></th>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                <th>Column 3</th>
-                <th>Column 4</th>
-                <th>Column 5</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th style="width: 100px;">Category Id</th>
+                <th style="width: 100px;">Created at</th>
+                <th style="width: 100px;">Updated at</th>
+                <th style="width: 80px;text-align: center;"></th>
             </tr>
             </thead>
             <tfoot>
@@ -53,110 +54,33 @@
             </tfoot>
 
             <tbody>
-            <tr>
-                <td><input type="checkbox" /></td>
-                <td>Lorem ipsum dolor</td>
-                <td><a href="#" title="title">Sit amet</a></td>
-                <td>Consectetur adipiscing</td>
-                <td>Donec tortor diam</td>
-                <td>
-                    <!-- Icons -->
-                    <a href="#" title="Edit"><img src="public/simpla-admin/resources/images/icons/pencil.png" alt="Edit" /></a>
-                    <a href="#" title="Delete"><img src="public/simpla-admin/resources/images/icons/cross.png" alt="Delete" /></a>
-                    <a href="#" title="Edit Meta"><img src="public/simpla-admin/resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="checkbox" /></td>
-                <td>Lorem ipsum dolor</td>
-                <td><a href="#" title="title">Sit amet</a></td>
-                <td>Consectetur adipiscing</td>
-                <td>Donec tortor diam</td>
-                <td>
-                    <!-- Icons -->
-                    <a href="#" title="Edit"><img src="public/simpla-admin/resources/images/icons/pencil.png" alt="Edit" /></a>
-                    <a href="#" title="Delete"><img src="public/simpla-admin/resources/images/icons/cross.png" alt="Delete" /></a>
-                    <a href="#" title="Edit Meta"><img src="public/simpla-admin/resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="checkbox" /></td>
-                <td>Lorem ipsum dolor</td>
-                <td><a href="#" title="title">Sit amet</a></td>
-                <td>Consectetur adipiscing</td>
-                <td>Donec tortor diam</td>
-                <td>
-                    <!-- Icons -->
-                    <a href="#" title="Edit"><img src="public/simpla-admin/resources/images/icons/pencil.png" alt="Edit" /></a>
-                    <a href="#" title="Delete"><img src="public/simpla-admin/resources/images/icons/cross.png" alt="Delete" /></a>
-                    <a href="#" title="Edit Meta"><img src="public/simpla-admin/resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="checkbox" /></td>
-                <td>Lorem ipsum dolor</td>
-                <td><a href="#" title="title">Sit amet</a></td>
-                <td>Consectetur adipiscing</td>
-                <td>Donec tortor diam</td>
-                <td>
-                    <!-- Icons -->
-                    <a href="#" title="Edit"><img src="public/simpla-admin/resources/images/icons/pencil.png" alt="Edit" /></a>
-                    <a href="#" title="Delete"><img src="public/simpla-admin/resources/images/icons/cross.png" alt="Delete" /></a>
-                    <a href="#" title="Edit Meta"><img src="public/simpla-admin/resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="checkbox" /></td>
-                <td>Lorem ipsum dolor</td>
-                <td><a href="#" title="title">Sit amet</a></td>
-                <td>Consectetur adipiscing</td>
-                <td>Donec tortor diam</td>
-                <td>
-                    <!-- Icons -->
-                    <a href="#" title="Edit"><img src="public/simpla-admin/resources/images/icons/pencil.png" alt="Edit" /></a>
-                    <a href="#" title="Delete"><img src="public/simpla-admin/resources/images/icons/cross.png" alt="Delete" /></a>
-                    <a href="#" title="Edit Meta"><img src="public/simpla-admin/resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="checkbox" /></td>
-                <td>Lorem ipsum dolor</td>
-                <td><a href="#" title="title">Sit amet</a></td>
-                <td>Consectetur adipiscing</td>
-                <td>Donec tortor diam</td>
-                <td>
-                    <!-- Icons -->
-                    <a href="#" title="Edit"><img src="public/simpla-admin/resources/images/icons/pencil.png" alt="Edit" /></a>
-                    <a href="#" title="Delete"><img src="public/simpla-admin/resources/images/icons/cross.png" alt="Delete" /></a>
-                    <a href="#" title="Edit Meta"><img src="public/simpla-admin/resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="checkbox" /></td>
-                <td>Lorem ipsum dolor</td>
-                <td><a href="#" title="title">Sit amet</a></td>
-                <td>Consectetur adipiscing</td>
-                <td>Donec tortor diam</td>
-                <td>
-                    <!-- Icons -->
-                    <a href="#" title="Edit"><img src="public/simpla-admin/resources/images/icons/pencil.png" alt="Edit" /></a>
-                    <a href="#" title="Delete"><img src="public/simpla-admin/resources/images/icons/cross.png" alt="Delete" /></a>
-                    <a href="#" title="Edit Meta"><img src="public/simpla-admin/resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="checkbox" /></td>
-                <td>Lorem ipsum dolor</td>
-                <td><a href="#" title="title">Sit amet</a></td>
-                <td>Consectetur adipiscing</td>
-                <td>Donec tortor diam</td>
-                <td>
-                    <!-- Icons -->
-                    <a href="#" title="Edit"><img src="public/simpla-admin/resources/images/icons/pencil.png" alt="Edit" /></a>
-                    <a href="#" title="Delete"><img src="public/simpla-admin/resources/images/icons/cross.png" alt="Delete" /></a>
-                    <a href="#" title="Edit Meta"><img src="public/simpla-admin/resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-                </td>
-            </tr>
+            <?php
+            foreach ($articles as $row) {
+                ?>
+                <tr>
+                    <td><input type="checkbox"/></td>
+                    <?php
+                    echo '<td hidden>' . $row['id'] . '</td>';
+                    echo '<td>' . $row['title'] . '</td>';
+                    echo '<td>' . $row['description'] . '</td>';
+                    echo '<td>' . $row['catid'] . '</td>';
+                    echo '<td>' . date('d/m/Y',strtotime($row['created_at'])) . '</td>';
+                    echo '<td>' . DateTime::createFromFormat('Y-m-d H:i:s',$row['updated_at'])->format('d/m/Y'). '</td>';
+                    ?>
+                    <td>
+                        <!-- Icons -->
+                        <a href="admin/articles/edit?id=<?= $row['id']?>" title="Edit"><img src="public/simpla-admin/resources/images/icons/pencil.png"
+                                                                                              alt="Edit"/></a>
+                        <a href="admin/articles/delete?id=<?= $row['id']?>" title="Delete"><img src="public/simpla-admin/resources/images/icons/cross.png"
+                                                                                                  alt="Delete"/></a>
+                        <a href="#" title="Edit Meta"><img
+                                    src="public/simpla-admin/resources/images/icons/hammer_screwdriver.png"
+                                    alt="Edit Meta"/></a>
+                    </td>
+                </tr>
+                <?php
+            }
+            ?>
             </tbody>
         </table>
     </div> <!-- End .content-box-content -->
