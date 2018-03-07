@@ -55,18 +55,14 @@ class Articles extends CI_Controller {
     public function listarticle(){
         if($this->session->has_userdata('user')){
             $data['user'] = $this->session->userdata('user');
+            $data['content'] = 'backend/simpla-admin/articles/list';
+            $data['active'] = 'admin-articles';
+            $data['item_active'] = 'articles-list';
+            $data['articles'] = $this->db->get('articles')->result_array();
+            $this->load->view('backend/layouts/main-layout',isset($data)? $data : null);
         } else {
-            $data['user'] = array(
-                'id' => 1,
-                'name' => 'Anonymous',
-                'email' => 'anonymous@gmail.com',
-                'phone' => '0983397580'
-            );
+            redirect('admin/login');
         }
-        $data['content'] = 'backend/simpla-admin/articles/list';
-        $data['active'] = 'admin-articles';
-        $data['item_active'] = 'articles-list';
-        $this->load->view('backend/layouts/main-layout',isset($data)? $data : null);
     }
 
     public function view(){

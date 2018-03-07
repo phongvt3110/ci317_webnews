@@ -40,19 +40,14 @@ class Categories extends CI_Controller {
     public function listcat(){
         if($this->session->has_userdata('user')){
             $data['user'] = $this->session->userdata('user');
+            $data['content'] = 'backend/simpla-admin/categories/listcat';
+            $data['active'] = 'admin-categories';
+            $data['item_active'] = 'categories-list';
+            $data['categories'] = $this->db->get('categories')->result_array();
+            $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
         } else {
-            $data['user'] = array(
-                'id' => 1,
-                'name' => 'Anonymous',
-                'email' => 'anonymous@gmail.com',
-                'phone' => '0983397580'
-            );
+            redirect('admin/login');
         }
-        $data['content'] = 'backend/simpla-admin/categories/listcat';
-        $data['active'] = 'admin-categories';
-        $data['item_active'] = 'categories-list';
-        $data['categories'] = $this->db->get('categories')->result_array();
-        $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
     }
 
     public function add(){
