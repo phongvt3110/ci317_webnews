@@ -5,7 +5,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <base href="<?php echo base_url();?>"/>
-    <title>Simpla Admin</title>
+    <title>Administrator</title>
 
     <!--                       CSS                       -->
 

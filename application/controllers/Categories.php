@@ -13,6 +13,7 @@ class Categories extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->library('form_validation');
+        $this->load->model('CategoriesModel');
     }
 
     public function __destruct()
@@ -38,7 +39,7 @@ class Categories extends CI_Controller {
             $data['content'] = 'backend/simpla-admin/categories/listcat';
             $data['active'] = 'admin-categories';
             $data['item_active'] = 'categories-list';
-            $data['categories'] = $this->db->get('categories')->result_array();
+            $data['categories'] = $this->CategoriesModel->get();  //$this->db->get('categories')->result_array();
             $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
         } else {
             redirect('admin/login');
