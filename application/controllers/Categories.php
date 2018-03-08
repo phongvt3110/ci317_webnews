@@ -129,13 +129,4 @@ class Categories extends CI_Controller {
         }
         return true;
     }
-
-    public function _checkAid($value= ''){
-        $cat = $this->db->get_where('categories',['aid'=> $value])->first_row();
-        if(!isset($cat)){
-            $this->form_validation->set_message('_checkAid',' Không tìm thấy aid = ' . $value);
-            return false;
-        }
-        return true;
-    }
 }
