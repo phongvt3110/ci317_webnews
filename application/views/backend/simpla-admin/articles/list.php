@@ -22,10 +22,17 @@
                 <th><input class="check-all" type="checkbox" /></th>
                 <th>Title</th>
                 <th>Description</th>
+<<<<<<< HEAD
                 <th>Content</th>
                 <th>Created at</th>
                 <th>Updated at</th>
                 <th></th>
+=======
+                <th style="width: 100px;">Category Id</th>
+                <th style="width: 100px;">Created at</th>
+                <th style="width: 100px;">Updated at</th>
+                <th style="width: 80px;text-align: center;"></th>
+>>>>>>> ab32a6a8a7678c8e5f323a5d619c67d8c04be062
             </tr>
             </thead>
             <tfoot>
@@ -64,10 +71,11 @@
                     echo '<td>' . $row['title'] . '</td>';
                     echo '<td>' . $row['description'] . '</td>';
                     echo '<td>' . $row['content'] . '</td>';
+                    echo '<td>' . $row['catid'] . '</td>';
                     echo '<td>' . date('d/m/Y',strtotime($row['created_at'])) . '</td>';
                     echo '<td>' . DateTime::createFromFormat('Y-m-d H:i:s',$row['updated_at'])->format('d/m/Y'). '</td>';
                     ?>
-                    <td style="width: 80px;text-align: center;">
+                    <td>
                         <!-- Icons -->
                         <a href="admin/articles/edit?id=<?= $row['id']?>" title="Edit"><img src="public/simpla-admin/resources/images/icons/pencil.png"
                                                                                               alt="Edit"/></a>
