@@ -28,6 +28,7 @@ class Articles extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
+        $this->load->model('ArticlesModel');
     }
 
     public function __destruct()
@@ -53,7 +54,7 @@ class Articles extends CI_Controller {
             $data['content'] = 'backend/simpla-admin/articles/list';
             $data['active'] = 'admin-articles';
             $data['item_active'] = 'articles-list';
-            $data['articles'] = $this->db->get('articles')->result_array();
+            $data['articles'] = $this->ArticlesModel->get();
             $this->load->view('backend/layouts/main-layout',isset($data)? $data : null);
         } else {
             redirect('admin/login');
