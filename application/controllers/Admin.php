@@ -28,6 +28,7 @@ class Admin extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
+        $this->load->model('UserModel');
     }
 
     public function __destruct()
@@ -62,10 +63,9 @@ class Admin extends CI_Controller {
             $username = $this->input->post('username');
             $password = $this->input->post('password');
             $remember = $this->input->post('remember');
-            $user = $this->db->get_where('users',['name'=> $username])->first_row();
+            $user = $this->UserModel->getByName($username);
             if(isset($user)){
-                $this->load->library('Passwordgen');
-                if($this->passwordgen->decodepass($user->password) == $password){
+                if($this->UserModel->checkPassword($password,$user->password)){
                     $this->session->set_userdata('user', (array)$user);
                     $this->session->set_userdata('remember', $remember);
                     redirect('admin/index');
