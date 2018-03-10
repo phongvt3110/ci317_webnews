@@ -64,7 +64,8 @@ class Categories extends CI_Controller {
                 {
                     $title = $this->input->post('title');
                     $description = $this->input->post('description');
-                    $this->db->insert('categories',['title' => $title,'description' => $description]);
+                    $flag = $this->CategoriesModel->insert(['title' => $title,'description' => $description]);
+                    $this->session->set_flashdata('flashdata_message',$flag);
                     redirect('categories/listcat');
                 } else {
                     $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
@@ -78,10 +79,11 @@ class Categories extends CI_Controller {
                     $title = $this->input->post('title');
                     $description = $this->input->post('description');
                     $updated_at  = date('Y-m-d H:i:s');
-                    $this->db->update('categories',['title' => $title,'description' => $description, 'updated_at' => $updated_at],['id'=>$id]);
+                    $flag = $this->CategoriesModel->update(['id' => $id,'title' => $title,'description' => $description, 'updated_at' => $updated_at]);
+                    $this->session->set_flashdata('flashdata_message',$flag);
                     redirect('categories/listcat');
                 } else {
-                    $cat = $this->db->get_where('categories',['id' => $id])->first_row();
+                    $cat = $this->CategoriesModel->find($id);
                     $data['content'] = 'backend/simpla-admin/categories/add';
                     $data['active'] = 'admin-categories';
                     $data['mode'] = 'edit';
@@ -100,7 +102,7 @@ class Categories extends CI_Controller {
         if($this->session->has_userdata('user')){
             $data['user'] = $this->session->userdata('user');
             $id = $this->input->get('id');
-            $cat = $this->db->get_where('categories',['id' => $id])->first_row();
+            $cat = $this->CategoriesModel->find($id);
             $data['content'] = 'backend/simpla-admin/categories/add';
             $data['active'] = 'admin-categories';
             $data['mode'] = 'edit';
@@ -115,7 +117,8 @@ class Categories extends CI_Controller {
         if($this->session->has_userdata('user')){
             $data['user'] = $this->session->userdata('user');
             $id = $this->input->get('id');
-            $this->db->delete('categories',['id' => $id]);
+            $flag = $this->CategoriesModel->delete($id);
+            $this->session->set_flashdata('flashdata_message',$flag);
             redirect('categories/listcat');
         } else {
             redirect('admin/login');

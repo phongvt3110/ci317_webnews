@@ -34,17 +34,47 @@ class CategoriesModel extends CI_Model {
 
     public function insert($cat){
         $this->db->insert($this->tablename,$cat);
-        return $this->db->affected_rows();
+        if($this->db->affected_rows()){
+            return [
+                'type' => 'insert_successful',
+                'message' => 'Them du lieu thanh cong'
+            ];
+        } else {
+            return [
+                'type' => 'insert_error',
+                'message' => 'Khong co du lieu duoc them vao'
+            ];
+        }
     }
 
     public function update($cat){
         $this->db->update($this->tablename,$cat,['id'=> $cat['id']]);
-        return $this->db->affected_rows();
+        if($this->db->affected_rows()){
+            return [
+                'type' => 'update_successful',
+                'message' => 'Cap nhat du lieu thanh cong'
+            ];
+        } else {
+            return [
+                'type' => 'update_error',
+                'message' => 'Khong cap nhat duoc du lieu'
+            ];
+        }
     }
 
     public function delete($id){
         $this->db->delete($this->tablename, ['id'=> $id]);
-        return $this->db->affected_rows();
+        if($this->db->affected_rows()){
+            return [
+                'type' => 'delete_successful',
+                'message' => 'Xoa du lieu thanh cong'
+            ];
+        } else {
+            return [
+                'type' => 'delete_error',
+                'message' => 'Khong xoa duoc du lieu nao'
+            ];
+        }
     }
 
     public function count(){

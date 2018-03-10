@@ -16,17 +16,82 @@
     </div> <!-- End .content-box-header -->
 
     <div class="content-box-content">
+        <?php
+            $flagdata_message = $this->session->flashdata('flashdata_message');
+            if(isset($flagdata_message) && count($flagdata_message)){
+                if($flagdata_message['type'] == 'insert_successful'){
+        ?>
+        <div class="notification success png_bg">
+            <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+            <div>
+                <?= $flagdata_message['message'] ?>
+            </div></div>
+        <?php
+            }
+            else if($flagdata_message['type'] == 'insert_error'){
+        ?>
+        <div class="notification error png_bg">
+            <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+            <div>
+                <?= $flagdata_message['message'] ?>
+            </div></div>
+        <?php
+            }
+            else if($flagdata_message['type'] == 'update_successful'){
+                ?>
+                <div class="notification success png_bg">
+                    <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+                    <div>
+                        <?= $flagdata_message['message'] ?>
+                    </div></div>
+                <?php
+            }
+            else if($flagdata_message['type'] == 'update_error'){
+                ?>
+                <div class="notification error png_bg">
+                    <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+                    <div>
+                        <?= $flagdata_message['message'] ?>
+                    </div></div>
+                <?php
+            }
+            else if($flagdata_message['type'] == 'delete_successful'){
+                ?>
+                <div class="notification success png_bg">
+                    <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+                    <div>
+                        <?= $flagdata_message['message'] ?>
+                    </div></div>
+                <?php
+            }
+            else if($flagdata_message['type'] == 'delete_error'){
+                ?>
+                <div class="notification error png_bg">
+                    <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+                    <div>
+                        <?= $flagdata_message['message'] ?>
+                    </div></div>
+                <?php
+            }
+            }
+        ?>
         <table>
-            <thead>
-            <tr>
-                <th><input class="check-all" type="checkbox" /></th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Created at</th>
-                <th>Updated at</th>
-                <th></th>
-            </tr>
-            </thead>
+            <?php
+            if (isset($categories) && count($categories)) {
+                ?>
+                <thead>
+                <tr>
+                    <th><input class="check-all" type="checkbox"/></th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Created at</th>
+                    <th>Updated at</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <?php
+            }
+            ?>
             <tfoot>
             <tr>
                 <td colspan="6">
@@ -54,6 +119,7 @@
 
             <tbody>
             <?php
+            if (isset($categories) && count($categories)){
                 foreach ($categories as $row) {
             ?>
                     <tr>
@@ -62,8 +128,8 @@
                             echo '<td hidden>' . $row['id'] . '</td>';
                             echo '<td>' . $row['title'] . '</td>';
                             echo '<td>' . $row['description'] . '</td>';
-                            echo '<td>' . date('d/m/Y',strtotime($row['created_at'])) . '</td>';
-                            echo '<td>' . DateTime::createFromFormat('Y-m-d H:i:s',$row['updated_at'])->format('d/m/Y'). '</td>';
+                            echo '<td>' . date('H:i:s d/m/Y',strtotime($row['created_at'])) . '</td>';
+                            echo '<td>' . DateTime::createFromFormat('Y-m-d H:i:s',$row['updated_at'])->format('H:i:s d/m/Y'). '</td>';
                         ?>
                         <td>
                             <!-- Icons -->
@@ -78,6 +144,11 @@
                     </tr>
                     <?php
                 }
+            } else {
+                echo '<tr><td colspan="6"> Khong co du lieu </td></tr>';
+            ?>
+            <?php
+            }
             ?>
             </tbody>
         </table>

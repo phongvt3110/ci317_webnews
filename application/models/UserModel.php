@@ -28,7 +28,7 @@ class UserModel extends CI_Model{
         return $this->db->get_where($this->tablename,['name'=>$name])->first_row();
     }
     public function checkPassword($passwordchecked,$password){
-        if($this->passwordgen->decodepass($password) == $passwordchecked) return true;
+        if($this->passwordgen->verify_pass($passwordchecked, $password)) return true;
         else return false;
     }
 }
