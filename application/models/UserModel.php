@@ -24,6 +24,20 @@ class UserModel extends CI_Model{
     public function get(){
         return $this->db->get($this->tablename)->result_array();
     }
+    public function add($user){
+        $this->db->insert($this->tablename, $user);
+        if($this->db->affected_rows()){
+            return [
+                'type' => 'insert_successful',
+                'message' => 'Them du lieu thanh cong'
+            ];
+        } else {
+            return [
+                'type' => 'insert_error',
+                'message' => 'Khong co du lieu duoc them vao'
+            ];
+        }
+    }
     public function getByName($name){
         return $this->db->get_where($this->tablename,['name'=>$name])->first_row();
     }

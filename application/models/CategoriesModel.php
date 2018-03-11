@@ -63,11 +63,28 @@ class CategoriesModel extends CI_Model {
     }
 
     public function delete($id){
-        $this->db->delete($this->tablename, ['id'=> $id]);
+//        $this->db->delete($this->tablename, ['id'=> $id]);
+        $this->db->where(['id'=>$id])->delete($this->tablename);
         if($this->db->affected_rows()){
             return [
                 'type' => 'delete_successful',
                 'message' => 'Xoa du lieu thanh cong'
+            ];
+        } else {
+            return [
+                'type' => 'delete_error',
+                'message' => 'Khong xoa duoc du lieu nao'
+            ];
+        }
+    }
+
+    public function deletelist($listId){
+        $this->db->where_in('id',$listId)->delete($this->tablename);
+        $flag = $this->db->affected_rows();
+        if($flag > 0){
+            return [
+                'type' => 'delete_successful',
+                'message' => 'Xoa ('.$flag.') du lieu thanh cong'
             ];
         } else {
             return [

@@ -35,6 +35,17 @@ class Categories extends CI_Controller {
 
     public function listcat(){
         if($this->session->has_userdata('user')){
+            $submit = $this->input->post('submit');
+            $action = $this->input->post('action');
+            if(isset($submit) && $submit == 'Apply to selected'){
+                if($action == 'delete'){
+                    $checkboxlist = $this->input->post('checkbox');
+                    if(is_array($checkboxlist)){
+                        $flag = $this->CategoriesModel->deletelist($checkboxlist);
+                        $this->session->set_flashdata('flashdata_message',$flag);
+                    }
+                }
+            }
             $data['user'] = $this->session->userdata('user');
             $data['content'] = 'backend/simpla-admin/categories/listcat';
             $data['active'] = 'admin-categories';
@@ -55,11 +66,6 @@ class Categories extends CI_Controller {
             if($this->input->post('submit') == 'Thêm mới'){
                 $this->form_validation->set_rules('title', 'Tiêu đề', 'trim|required|min_length[5]|max_length[255]|callback__title');
                 $this->form_validation->set_rules('description', 'Mô tả chung', 'trim|required|min_length[5]|max_length[255]');
-//                $this->form_validation->set_error_delimiters('<div
-//                        class="notification error png_bg">
-//				            <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png"
-//				            title="Close this notification" alt="close" /></a>
-//				            <div>', '</div></div>');
                 if ($this->form_validation->run() == true)
                 {
                     $title = $this->input->post('title');
@@ -113,13 +119,38 @@ class Categories extends CI_Controller {
         }
     }
 
-    public function delete(){
+    public function delete($id = 0){
         if($this->session->has_userdata('user')){
-            $data['user'] = $this->session->userdata('user');
-            $id = $this->input->get('id');
-            $flag = $this->CategoriesModel->delete($id);
-            $this->session->set_flashdata('flashdata_message',$flag);
-            redirect('categories/listcat');
+            $cat = $this->CategoriesModel->find($id);
+            $submit = $this->input->post('submit');
+            if(isset($cat) && count($cat) >0){
+                if(isset($submit)){
+                    if($submit == 'Xóa danh mục'){
+                        $flag = $this->CategoriesModel->delete($cat->id);
+                        $this->session->set_flashdata('flashdata_message',$flag);
+                        redirect('categories/listcat');
+                    } else if($submit == 'Hủy bỏ'){
+                        $flag = [
+                            'type' => 'delete_successful',
+                            'message' => 'Ban da huy thao tac xoa danh muc'
+                        ];
+                        $this->session->set_flashdata('flashdata_message',$flag);
+                        redirect('categories/listcat');
+                    }
+                } else {
+                    $data['user'] = $this->session->userdata('user');
+                    $data['cat'] = (array)$cat;
+                    $data['content'] = 'backend/simpla-admin/categories/delete';
+                    $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
+                }
+            } else {
+                $flag = [
+                    'type' => 'delete_successful',
+                    'message' => 'Danh muc khong ton tai'
+                ];
+                $this->session->set_flashdata('flashdata_message',$flag);
+                redirect('categories/listcat');
+            }
         } else {
             redirect('admin/login');
         }

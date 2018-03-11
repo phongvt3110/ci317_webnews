@@ -82,7 +82,7 @@
                     <li><a href="#">General</a></li>
                     <li><a href="#">Design</a></li>
                     <li><a href="#">Your Profile</a></li>
-                    <li><a href="#">Users and Permissions</a></li>
+                    <li><a href="admin/user">Users and Permissions</a></li>
                 </ul>
             </li>
 

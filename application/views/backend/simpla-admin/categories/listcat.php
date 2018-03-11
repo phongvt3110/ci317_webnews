@@ -16,6 +16,7 @@
     </div> <!-- End .content-box-header -->
 
     <div class="content-box-content">
+        <form action="categories/listcat" method="post">
         <?php
             $flagdata_message = $this->session->flashdata('flashdata_message');
             if(isset($flagdata_message) && count($flagdata_message)){
@@ -96,12 +97,12 @@
             <tr>
                 <td colspan="6">
                     <div class="bulk-actions align-left">
-                        <select name="dropdown">
-                            <option value="option1">Choose an action...</option>
-                            <option value="option2">Edit</option>
-                            <option value="option3">Delete</option>
+                        <select name="action">
+                            <option value="">Choose an action...</option>
+                            <option value="delete">Delete</option>
                         </select>
-                        <a class="button" href="#">Apply to selected</a>
+                        <a class="button" href="#" id="link-submit">Apply to selected</a>
+                        <input style="display: none" id="btn-submit" type="submit" name="submit" value="Apply to selected" />
                     </div>
 
                     <div class="pagination">
@@ -123,7 +124,7 @@
                 foreach ($categories as $row) {
             ?>
                     <tr>
-                        <td><input type="checkbox"/></td>
+                        <td><input type="checkbox" name="checkbox[]" value="<?= $row['id']?>"/></td>
                         <?php
                             echo '<td hidden>' . $row['id'] . '</td>';
                             echo '<td>' . $row['title'] . '</td>';
@@ -133,9 +134,9 @@
                         ?>
                         <td>
                             <!-- Icons -->
-                            <a href="admin/categories/edit?id=<?= $row['id']?>" title="Edit"><img src="public/simpla-admin/resources/images/icons/pencil.png"
+                            <a href="categories/edit?id=<?= $row['id']?>" title="Edit"><img src="public/simpla-admin/resources/images/icons/pencil.png"
                                                           alt="Edit"/></a>
-                            <a href="admin/categories/delete?id=<?= $row['id']?>" title="Delete"><img src="public/simpla-admin/resources/images/icons/cross.png"
+                            <a href="categories/delete/<?= $row['id']?>" title="Delete"><img src="public/simpla-admin/resources/images/icons/cross.png"
                                                             alt="Delete"/></a>
                             <a href="#" title="Edit Meta"><img
                                         src="public/simpla-admin/resources/images/icons/hammer_screwdriver.png"
@@ -152,5 +153,15 @@
             ?>
             </tbody>
         </table>
+        </form>
     </div> <!-- End .content-box-content -->
 </div> <!-- End .content-box -->
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#link-submit').click(function(){
+            $('#btn-submit').click();
+            return false;
+        })
+    })
+</script>
