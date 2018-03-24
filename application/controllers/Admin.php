@@ -90,4 +90,9 @@ class Admin extends CI_Controller {
     public function test(){
         $this->load->view('backend/simpla-admin/example',isset($data)? $data : null);
     }
+
+    public function passgen($pass){
+		$this->load->library('Passwordgen');
+		echo $this->passwordgen->genpass($pass);
+	}
 }
