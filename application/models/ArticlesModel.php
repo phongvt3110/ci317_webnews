@@ -12,6 +12,7 @@ class ArticlesModel extends CI_Model{
     protected $id = '';
     protected $title = '';
     protected $description = '';
+    protected $content = '';
     protected $catid = '';
     protected $created_at = '';
     protected $updated_at = '';
