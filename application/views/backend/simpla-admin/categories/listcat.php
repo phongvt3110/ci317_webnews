@@ -100,6 +100,8 @@
                         <select name="action">
                             <option value="">Choose an action...</option>
                             <option value="delete">Delete</option>
+                            <option value="publish">Publish</option>
+                            <option value="unpublish">Unpublish</option>
                         </select>
                         <a class="button" href="#" id="link-submit">Apply to selected</a>
                         <input style="display: none" id="btn-submit" type="submit" name="submit" value="Apply to selected" />
