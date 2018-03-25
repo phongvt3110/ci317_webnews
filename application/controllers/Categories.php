@@ -156,6 +156,10 @@ class Categories extends CI_Controller {
         }
     }
 
+    public function publish(){
+
+    }
+
     public function _title($value = ''){
         $data = ['admin','Admin','administrator','Administrator'];
         if(in_array($value, $data)) {
