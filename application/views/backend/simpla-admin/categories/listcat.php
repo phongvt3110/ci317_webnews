@@ -112,6 +112,15 @@ $this->load->view('backend/layouts/shortcut');
                     </div></div>
                 <?php
             }
+            else if($flagdata_message['type'] == 'noaction_selected'){
+                ?>
+                <div class="notification error png_bg">
+                    <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+                    <div>
+                        <?= $flagdata_message['message'] ?>
+                    </div></div>
+                <?php
+            }
             }
         ?>
         <table>

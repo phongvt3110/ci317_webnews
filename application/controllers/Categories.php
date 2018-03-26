@@ -67,6 +67,12 @@ class Categories extends CI_Controller {
                         $flag = $this->CategoriesModel->unpublishedlist($checkboxlist);
                         $this->session->set_flashdata('flashdata_message',$flag);
                     }
+                } else {
+                    $flag = [
+                        'type' => 'noaction_selected',
+                        'message' => 'Ban phai chon action'
+                    ];
+                    $this->session->set_flashdata('flashdata_message',$flag);
                 }
             }
             $data['user'] = $this->session->userdata('user');
