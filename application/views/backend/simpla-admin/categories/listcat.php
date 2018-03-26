@@ -2,7 +2,9 @@
 <h2>List danh mục</h2>
 <p id="page-intro">What would you like to do?</p>
 
-<?php $this->load->view('backend/layouts/shortcut');?>
+<?php
+$this->load->view('backend/layouts/shortcut');
+?>
 
 <div class="clear"></div> <!-- End .clear -->
 
@@ -85,6 +87,7 @@
                     <th><input class="check-all" type="checkbox"/></th>
                     <th>Title</th>
                     <th>Description</th>
+                    <th>Publish</th>
                     <th>Created at</th>
                     <th>Updated at</th>
                     <th></th>
@@ -131,6 +134,7 @@
                             echo '<td hidden>' . $row['id'] . '</td>';
                             echo '<td>' . $row['title'] . '</td>';
                             echo '<td>' . $row['description'] . '</td>';
+                            echo '<td><img src="public/simpla-admin/resources/images/icons/' .  $row['publish'] == 'published' ? 'tick_circle.png"/></td>' : 'cross_circle.png"/></td>';
                             echo '<td>' . date('H:i:s d/m/Y',strtotime($row['created_at'])) . '</td>';
                             echo '<td>' . DateTime::createFromFormat('Y-m-d H:i:s',$row['updated_at'])->format('H:i:s d/m/Y'). '</td>';
                         ?>

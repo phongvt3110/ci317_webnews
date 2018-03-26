@@ -80,7 +80,7 @@ p {
                 }
                 
 .button:hover {
-                text-decoration: underline;
+                text-decoration: none;
                 }
 
 a:hover[id="link-submit"]  {
