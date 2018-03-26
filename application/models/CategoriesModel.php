@@ -94,6 +94,38 @@ class CategoriesModel extends CI_Model {
         }
     }
 
+    public function publishedlist($listId) {
+        $this->db->where_in('id',$listId)->update($this->tablename,['publish' => 'published']);
+        $flag = $this->db->affected_rows();
+        if($flag > 0){
+            return [
+                'type' => 'published_successful',
+                'message' => 'Published ('.$flag.') du lieu thanh cong'
+            ];
+        } else {
+            return [
+                'type' => 'published_error',
+                'message' => 'Khong publish duoc du lieu'
+            ];
+        }
+    }
+
+    public function unpublishedlist($listId) {
+        $this->db->where_in('id',$listId)->update($this->tablename,['publish' => 'unpublished']);
+        $flag = $this->db->affected_rows();
+        if($flag > 0){
+            return [
+                'type' => 'unpublished_successful',
+                'message' => 'Unpublished ('.$flag.') du lieu thanh cong'
+            ];
+        } else {
+            return [
+                'type' => 'published_error',
+                'message' => 'Khong co du lieu nao bi unpublished'
+            ];
+        }
+    }
+
     public function count(){
         return $this->db->count_all($this->tablename);
     }

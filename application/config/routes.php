@@ -75,5 +75,6 @@ $route['admin/categories/add']    = 'categories/add';
 $route['admin/categories/edit']    = 'categories/edit';
 $route['admin/categories/delete']    = 'categories/delete';
 $route['admin/categories/deletelist']    = 'categories/deletelist';
+$route['admin/categories/action']    = 'categories/applyaction';
 $route['admin/user']    = 'users/listuser';
 $route['admin/user/add']    = 'users/add';

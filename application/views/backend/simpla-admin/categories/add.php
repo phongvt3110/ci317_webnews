@@ -15,7 +15,7 @@
     </div> <!-- End .content-box-header -->
 
     <div class="content-box-content">
-        <form action="categories/add" method="post">
+        <form action="admin/categories/add" method="post">
             <fieldset>
                 <?php
                     if(isset($mode) && isset($cat) && $mode=='edit'){

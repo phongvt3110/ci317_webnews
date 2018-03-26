@@ -35,13 +35,36 @@ class Categories extends CI_Controller {
 
     public function listcat(){
         if($this->session->has_userdata('user')){
+            $data['user'] = $this->session->userdata('user');
+            $data['content'] = 'backend/simpla-admin/categories/listcat';
+            $data['active'] = 'admin-categories';
+            $data['item_active'] = 'categories-list';
+            $data['categories'] = $this->CategoriesModel->get();  //$this->db->get('categories')->result_array();
+            $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
+        } else {
+            redirect('admin/login');
+        }
+    }
+
+    public function applyaction(){
+        if($this->session->has_userdata('user')){
             $submit = $this->input->post('submit');
             $action = $this->input->post('action');
             if(isset($submit) && $submit == 'Apply to selected'){
+                $checkboxlist = $this->input->post('checkbox');
                 if($action == 'delete'){
-                    $checkboxlist = $this->input->post('checkbox');
                     if(is_array($checkboxlist)){
                         $flag = $this->CategoriesModel->deletelist($checkboxlist);
+                        $this->session->set_flashdata('flashdata_message',$flag);
+                    }
+                } else if($action == 'published') {
+                    if(is_array($checkboxlist)){
+                        $flag = $this->CategoriesModel->publishedlist($checkboxlist);
+                        $this->session->set_flashdata('flashdata_message',$flag);
+                    }
+                } else if($action == 'unpublished') {
+                    if(is_array($checkboxlist)){
+                        $flag = $this->CategoriesModel->unpublishedlist($checkboxlist);
                         $this->session->set_flashdata('flashdata_message',$flag);
                     }
                 }
@@ -72,7 +95,7 @@ class Categories extends CI_Controller {
                     $description = $this->input->post('description');
                     $flag = $this->CategoriesModel->insert(['title' => $title,'description' => $description]);
                     $this->session->set_flashdata('flashdata_message',$flag);
-                    redirect('categories/listcat');
+                    redirect('admin/categories/listcat');
                 } else {
                     $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
                 }
@@ -87,7 +110,7 @@ class Categories extends CI_Controller {
                     $updated_at  = date('Y-m-d H:i:s');
                     $flag = $this->CategoriesModel->update(['id' => $id,'title' => $title,'description' => $description, 'updated_at' => $updated_at]);
                     $this->session->set_flashdata('flashdata_message',$flag);
-                    redirect('categories/listcat');
+                    redirect('admin/categories/listcat');
                 } else {
                     $cat = $this->CategoriesModel->find($id);
                     $data['content'] = 'backend/simpla-admin/categories/add';
@@ -128,14 +151,14 @@ class Categories extends CI_Controller {
                     if($submit == 'Xóa danh mục'){
                         $flag = $this->CategoriesModel->delete($cat->id);
                         $this->session->set_flashdata('flashdata_message',$flag);
-                        redirect('categories/listcat');
+                        redirect('admin/categories/listcat');
                     } else if($submit == 'Hủy bỏ'){
                         $flag = [
                             'type' => 'delete_successful',
                             'message' => 'Ban da huy thao tac xoa danh muc'
                         ];
                         $this->session->set_flashdata('flashdata_message',$flag);
-                        redirect('categories/listcat');
+                        redirect('admin/categories/listcat');
                     }
                 } else {
                     $data['user'] = $this->session->userdata('user');
@@ -149,15 +172,11 @@ class Categories extends CI_Controller {
                     'message' => 'Danh muc khong ton tai'
                 ];
                 $this->session->set_flashdata('flashdata_message',$flag);
-                redirect('categories/listcat');
+                redirect('admin/categories/listcat');
             }
         } else {
             redirect('admin/login');
         }
-    }
-
-    public function publish(){
-
     }
 
     public function _title($value = ''){

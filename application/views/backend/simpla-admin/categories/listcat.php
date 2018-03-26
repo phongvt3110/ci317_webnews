@@ -18,7 +18,7 @@ $this->load->view('backend/layouts/shortcut');
     </div> <!-- End .content-box-header -->
 
     <div class="content-box-content">
-        <form action="categories/listcat" method="post">
+        <form action="admin/categories/action" method="post">
         <?php
             $flagdata_message = $this->session->flashdata('flashdata_message');
             if(isset($flagdata_message) && count($flagdata_message)){
@@ -76,6 +76,42 @@ $this->load->view('backend/layouts/shortcut');
                     </div></div>
                 <?php
             }
+            else if($flagdata_message['type'] == 'published_successful'){
+                ?>
+                <div class="notification success png_bg">
+                    <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+                    <div>
+                        <?= $flagdata_message['message'] ?>
+                    </div></div>
+                <?php
+            }
+            else if($flagdata_message['type'] == 'published_error'){
+                ?>
+                <div class="notification error png_bg">
+                    <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+                    <div>
+                        <?= $flagdata_message['message'] ?>
+                    </div></div>
+                <?php
+            }
+            else if($flagdata_message['type'] == 'unpublished_successful'){
+                ?>
+                <div class="notification success png_bg">
+                    <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+                    <div>
+                        <?= $flagdata_message['message'] ?>
+                    </div></div>
+                <?php
+            }
+            else if($flagdata_message['type'] == 'unpublished_error'){
+                ?>
+                <div class="notification error png_bg">
+                    <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+                    <div>
+                        <?= $flagdata_message['message'] ?>
+                    </div></div>
+                <?php
+            }
             }
         ?>
         <table>
@@ -100,11 +136,11 @@ $this->load->view('backend/layouts/shortcut');
             <tr>
                 <td colspan="6">
                     <div class="bulk-actions align-left">
-                        <select name="action">
+                        <select name="action" id="select-action">
                             <option value="">Choose an action...</option>
                             <option value="delete">Delete</option>
-                            <option value="publish">Publish</option>
-                            <option value="unpublish">Unpublish</option>
+                            <option value="published">Publish</option>
+                            <option value="unpublished">Unpublish</option>
                         </select>
                         <a class="button" href="#" id="link-submit">Apply to selected</a>
                         <input style="display: none" id="btn-submit" type="submit" name="submit" value="Apply to selected" />
@@ -134,7 +170,10 @@ $this->load->view('backend/layouts/shortcut');
                             echo '<td hidden>' . $row['id'] . '</td>';
                             echo '<td>' . $row['title'] . '</td>';
                             echo '<td>' . $row['description'] . '</td>';
-                            echo '<td><img src="public/simpla-admin/resources/images/icons/' .  $row['publish'] == 'published' ? 'tick_circle.png"/></td>' : 'cross_circle.png"/></td>';
+                            if($row['publish'] == 'published')
+                                echo '<td><img src="public/simpla-admin/resources/images/icons/tick_circle.png"/></td>';
+                            else
+                                echo '<td><img src="public/simpla-admin/resources/images/icons/cross_circle.png"/></td>';
                             echo '<td>' . date('H:i:s d/m/Y',strtotime($row['created_at'])) . '</td>';
                             echo '<td>' . DateTime::createFromFormat('Y-m-d H:i:s',$row['updated_at'])->format('H:i:s d/m/Y'). '</td>';
                         ?>
@@ -165,8 +204,16 @@ $this->load->view('backend/layouts/shortcut');
 
 <script type="text/javascript">
     $(document).ready(function(){
+        var flag;
         $('#link-submit').click(function(){
-            $('#btn-submit').click();
+            if($('#select-action').val() === 'delete'){
+                flag = confirm('Ban co thuc su muon xoa?');
+                if(flag == true){
+                    $('#btn-submit').click();
+                }
+            } else {
+                $('#btn-submit').click();
+            }
             return false;
         })
     })
