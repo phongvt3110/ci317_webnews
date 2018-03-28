@@ -69,7 +69,7 @@ class Categories extends CI_Controller {
                     }
                 } else {
                     $flag = [
-                        'type' => 'noaction_selected',
+                        'type' => 'successful',
                         'message' => 'Ban phai chon action'
                     ];
                     $this->session->set_flashdata('flashdata_message',$flag);
@@ -160,7 +160,7 @@ class Categories extends CI_Controller {
                         redirect('admin/categories/listcat');
                     } else if($submit == 'Hủy bỏ'){
                         $flag = [
-                            'type' => 'delete_successful',
+                            'type' => 'successful',
                             'message' => 'Ban da huy thao tac xoa danh muc'
                         ];
                         $this->session->set_flashdata('flashdata_message',$flag);
@@ -174,7 +174,7 @@ class Categories extends CI_Controller {
                 }
             } else {
                 $flag = [
-                    'type' => 'delete_successful',
+                    'type' => 'successful',
                     'message' => 'Danh muc khong ton tai'
                 ];
                 $this->session->set_flashdata('flashdata_message',$flag);

@@ -75,6 +75,14 @@
             </li>
 
             <li>
+                <a href="#" class="nav-top-item">Users</a>
+                <ul>
+                    <li><a href="#">List Users</a></li>
+                    <li><a href="#">New User</a></li>
+                </ul>
+            </li>
+
+            <li>
                 <a href="#" class="nav-top-item">
                     Settings
                 </a>

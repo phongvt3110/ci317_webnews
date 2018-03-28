@@ -22,7 +22,7 @@ $this->load->view('backend/layouts/shortcut');
         <?php
             $flagdata_message = $this->session->flashdata('flashdata_message');
             if(isset($flagdata_message) && count($flagdata_message)){
-                if($flagdata_message['type'] == 'insert_successful'){
+                if($flagdata_message['type'] == 'successful'){
         ?>
         <div class="notification success png_bg">
             <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
@@ -31,7 +31,7 @@ $this->load->view('backend/layouts/shortcut');
             </div></div>
         <?php
             }
-            else if($flagdata_message['type'] == 'insert_error'){
+            else if($flagdata_message['type'] == 'error'){
         ?>
         <div class="notification error png_bg">
             <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
@@ -39,87 +39,6 @@ $this->load->view('backend/layouts/shortcut');
                 <?= $flagdata_message['message'] ?>
             </div></div>
         <?php
-            }
-            else if($flagdata_message['type'] == 'update_successful'){
-                ?>
-                <div class="notification success png_bg">
-                    <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-                    <div>
-                        <?= $flagdata_message['message'] ?>
-                    </div></div>
-                <?php
-            }
-            else if($flagdata_message['type'] == 'update_error'){
-                ?>
-                <div class="notification error png_bg">
-                    <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-                    <div>
-                        <?= $flagdata_message['message'] ?>
-                    </div></div>
-                <?php
-            }
-            else if($flagdata_message['type'] == 'delete_successful'){
-                ?>
-                <div class="notification success png_bg">
-                    <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-                    <div>
-                        <?= $flagdata_message['message'] ?>
-                    </div></div>
-                <?php
-            }
-            else if($flagdata_message['type'] == 'delete_error'){
-                ?>
-                <div class="notification error png_bg">
-                    <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-                    <div>
-                        <?= $flagdata_message['message'] ?>
-                    </div></div>
-                <?php
-            }
-            else if($flagdata_message['type'] == 'published_successful'){
-                ?>
-                <div class="notification success png_bg">
-                    <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-                    <div>
-                        <?= $flagdata_message['message'] ?>
-                    </div></div>
-                <?php
-            }
-            else if($flagdata_message['type'] == 'published_error'){
-                ?>
-                <div class="notification error png_bg">
-                    <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-                    <div>
-                        <?= $flagdata_message['message'] ?>
-                    </div></div>
-                <?php
-            }
-            else if($flagdata_message['type'] == 'unpublished_successful'){
-                ?>
-                <div class="notification success png_bg">
-                    <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-                    <div>
-                        <?= $flagdata_message['message'] ?>
-                    </div></div>
-                <?php
-            }
-            else if($flagdata_message['type'] == 'unpublished_error'){
-                ?>
-                <div class="notification error png_bg">
-                    <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-                    <div>
-                        <?= $flagdata_message['message'] ?>
-                    </div></div>
-                <?php
-            }
-            else if($flagdata_message['type'] == 'noaction_selected'){
-                ?>
-                <div class="notification error png_bg">
-                    <a href="#" class="close"><img src="public/simpla-admin/resources/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-                    <div>
-                        <?= $flagdata_message['message'] ?>
-                    </div></div>
-                <?php
             }
             }
         ?>

@@ -36,12 +36,12 @@ class CategoriesModel extends CI_Model {
         $this->db->insert($this->tablename,$cat);
         if($this->db->affected_rows()){
             return [
-                'type' => 'insert_successful',
+                'type' => 'successful',
                 'message' => 'Them du lieu thanh cong'
             ];
         } else {
             return [
-                'type' => 'insert_error',
+                'type' => 'error',
                 'message' => 'Khong co du lieu duoc them vao'
             ];
         }
@@ -51,12 +51,12 @@ class CategoriesModel extends CI_Model {
         $this->db->update($this->tablename,$cat,['id'=> $cat['id']]);
         if($this->db->affected_rows()){
             return [
-                'type' => 'update_successful',
+                'type' => 'successful',
                 'message' => 'Cap nhat du lieu thanh cong'
             ];
         } else {
             return [
-                'type' => 'update_error',
+                'type' => 'error',
                 'message' => 'Khong cap nhat duoc du lieu'
             ];
         }
@@ -67,12 +67,12 @@ class CategoriesModel extends CI_Model {
         $this->db->where(['id'=>$id])->delete($this->tablename);
         if($this->db->affected_rows()){
             return [
-                'type' => 'delete_successful',
+                'type' => 'successful',
                 'message' => 'Xoa du lieu thanh cong'
             ];
         } else {
             return [
-                'type' => 'delete_error',
+                'type' => 'error',
                 'message' => 'Khong xoa duoc du lieu nao'
             ];
         }
@@ -83,12 +83,12 @@ class CategoriesModel extends CI_Model {
         $flag = $this->db->affected_rows();
         if($flag > 0){
             return [
-                'type' => 'delete_successful',
+                'type' => 'successful',
                 'message' => 'Xoa ('.$flag.') du lieu thanh cong'
             ];
         } else {
             return [
-                'type' => 'delete_error',
+                'type' => 'error',
                 'message' => 'Khong xoa duoc du lieu nao'
             ];
         }
@@ -99,12 +99,12 @@ class CategoriesModel extends CI_Model {
         $flag = $this->db->affected_rows();
         if($flag > 0){
             return [
-                'type' => 'published_successful',
+                'type' => 'successful',
                 'message' => 'Published ('.$flag.') du lieu thanh cong'
             ];
         } else {
             return [
-                'type' => 'published_error',
+                'type' => 'error',
                 'message' => 'Khong publish duoc du lieu'
             ];
         }
@@ -115,12 +115,12 @@ class CategoriesModel extends CI_Model {
         $flag = $this->db->affected_rows();
         if($flag > 0){
             return [
-                'type' => 'unpublished_successful',
+                'type' => 'successful',
                 'message' => 'Unpublished ('.$flag.') du lieu thanh cong'
             ];
         } else {
             return [
-                'type' => 'published_error',
+                'type' => 'error',
                 'message' => 'Khong co du lieu nao bi unpublished'
             ];
         }
