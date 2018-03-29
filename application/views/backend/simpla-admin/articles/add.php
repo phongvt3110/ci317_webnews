@@ -25,7 +25,9 @@
 
                     <p>
                         <label>Title</label>
-                        <input class="text-input small-input" type="text" id="small-input" name="small-input" /> <span class="input-notification success png_bg">Successful message</span> <!-- Classes for input-notification: success, error, information, attention -->
+                        <input class="text-input small-input" type="text" id="small-input" name="small-input" />
+                        <?php echo form_error('title', '<span class="input-notification error png_bg">', '</span>'); ?>
+                        <span class="input-notification success png_bg">Successful message</span> <!-- Classes for input-notification: success, error, information, attention -->
                         <br /><small>A small description of the field</small>
                     </p>
 
