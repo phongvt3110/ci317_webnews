@@ -24,19 +24,26 @@
                 <fieldset> <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
 
                     <p>
-                        <label>Small form input</label>
+                        <label>Title</label>
                         <input class="text-input small-input" type="text" id="small-input" name="small-input" /> <span class="input-notification success png_bg">Successful message</span> <!-- Classes for input-notification: success, error, information, attention -->
                         <br /><small>A small description of the field</small>
                     </p>
 
                     <p>
-                        <label>Medium form input</label>
-                        <input class="text-input medium-input datepicker" type="text" id="medium-input" name="medium-input" /> <span class="input-notification error png_bg">Error message</span>
-                    </p>
-
-                    <p>
-                        <label>Large form input</label>
-                        <input class="text-input large-input" type="text" id="large-input" name="large-input" />
+                        <label>Description</label>
+                        <textarea class="text-input textarea wysiwyg" id="textarea" name="description" cols="79" rows="15"> <?= set_value('description',isset($article)?$article['description']:'')?></textarea>
+                        <?php
+                        //                        $data = array(
+                        //                            'name'        => 'description',
+                        //                            'id'          => 'textarea',
+                        //                            'value'       => isset($article)?$article['description']:'',
+                        //                            'rows'        => '15',
+                        //                            'cols'        => '79',
+                        //                            'class'       => 'text-input textarea wysiwyg',
+                        //                        );
+                        //                        echo form_textarea($data);
+                        ?>
+                        <?php echo form_error('description', '<span class="input-notification error png_bg">', '</span>'); ?>
                     </p>
 
                     <p>
