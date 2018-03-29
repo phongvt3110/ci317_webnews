@@ -1,16 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.8
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1deb2ubuntu2
+-- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 29, 2018 at 06:46 AM
--- Server version: 5.7.9
--- PHP Version: 7.1.7
+-- Generation Time: Mar 29, 2018 at 09:44 PM
+-- Server version: 10.0.34-MariaDB-0ubuntu0.16.04.1
+-- PHP Version: 7.0.28-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
+SET time_zone = "+07:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -31,17 +29,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `images` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `aid` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `source` bigint(20) UNSIGNED DEFAULT NULL,
-  `link` text CHARACTER SET utf8mb4,
-  `android_url` text CHARACTER SET utf8mb4,
-  `ios_url` text CHARACTER SET utf8mb4,
-  `alt` text CHARACTER SET utf8mb4,
+  `link` text COLLATE utf8_unicode_ci,
+  `android_url` text COLLATE utf8_unicode_ci,
+  `ios_url` text COLLATE utf8_unicode_ci,
+  `alt` text COLLATE utf8_unicode_ci,
   `layout` tinyint(3) UNSIGNED NOT NULL,
   `order` tinyint(3) UNSIGNED NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Indexes for dumped tables
@@ -63,8 +61,6 @@ ALTER TABLE `images`
 --
 ALTER TABLE `images`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
