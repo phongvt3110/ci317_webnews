@@ -33,13 +33,20 @@ class Categories extends CI_Controller {
         }
     }
 
-    public function listcat(){
+    public function listcat($page = 0){
         if($this->session->has_userdata('user')){
+            $this->load->library('pagination');
             $data['user'] = $this->session->userdata('user');
             $data['content'] = 'backend/simpla-admin/categories/listcat';
             $data['active'] = 'admin-categories';
             $data['item_active'] = 'categories-list';
             $data['categories'] = $this->CategoriesModel->get();  //$this->db->get('categories')->result_array();
+            $pagingconfig['base_url'] = 'http://news.dev/admin/categories/listcat/';
+            $pagingconfig['total_rows'] = $this->CategoriesModel->total();
+            $pagingconfig['per_page'] = 5;
+            $pagingconfig['use_page_numbers'] = TRUE;
+            $this->pagination->initialize($pagingconfig);
+            $data['listcategories'] = $this->pagination->create_links();
             $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
         } else {
             redirect('admin/login');

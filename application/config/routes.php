@@ -71,6 +71,7 @@ $route['admin/articles/view']    = 'articles/view';
 $route['admin/articles/listarticle']    = 'articles/listarticle';
 $route['admin/categories']     = 'categories/index';
 $route['admin/categories/listcat']    = 'categories/listcat';
+$route['admin/categories/listcat/(:num)']    = 'categories/listcat/$1';
 $route['admin/categories/add']    = 'categories/add';
 $route['admin/categories/edit']    = 'categories/edit';
 $route['admin/categories/delete']    = 'categories/delete';

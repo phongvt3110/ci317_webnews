@@ -73,7 +73,7 @@ $this->load->view('backend/layouts/shortcut');
                         <a class="button" href="#" id="link-submit">Apply to selected</a>
                         <input style="display: none" id="btn-submit" type="submit" name="submit" value="Apply to selected" />
                     </div>
-
+                    <?php echo isset($listcategories)? $listcategories : ''; ?>
                     <div class="pagination">
                         <a href="#" title="First Page">&laquo; First</a><a href="#" title="Previous Page">&laquo; Previous</a>
                         <a href="#" class="number" title="1">1</a>

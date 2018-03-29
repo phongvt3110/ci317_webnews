@@ -126,7 +126,7 @@ class CategoriesModel extends CI_Model {
         }
     }
 
-    public function count(){
+    public function total(){
         return $this->db->count_all($this->tablename);
     }
 }
