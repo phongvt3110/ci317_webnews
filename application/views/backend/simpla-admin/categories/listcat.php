@@ -49,6 +49,7 @@ $this->load->view('backend/layouts/shortcut');
                 <thead>
                 <tr>
                     <th><input class="check-all" type="checkbox"/></th>
+                    <th>ID</th>
                     <th>Title</th>
                     <th>Description</th>
                     <th>Publish</th>
@@ -75,12 +76,14 @@ $this->load->view('backend/layouts/shortcut');
                     </div>
                     <?php echo isset($listcategories)? $listcategories : ''; ?>
                     <div class="pagination">
-                        <a href="#" title="First Page">&laquo; First</a><a href="#" title="Previous Page">&laquo; Previous</a>
-                        <a href="#" class="number" title="1">1</a>
-                        <a href="#" class="number" title="2">2</a>
-                        <a href="#" class="number current" title="3">3</a>
-                        <a href="#" class="number" title="4">4</a>
-                        <a href="#" title="Next Page">Next &raquo;</a><a href="#" title="Last Page">Last &raquo;</a>
+
+<!--                        <a href="#" title="First Page">&laquo; First</a>-->
+<!--                        <a href="#" title="Previous Page">&laquo; Previous</a>-->
+<!--                        <a href="#" class="number" title="1">1</a>-->
+<!--                        <a href="#" class="number" title="2">2</a>-->
+<!--                        <a href="#" class="number current" title="3">3</a>-->
+<!--                        <a href="#" class="number" title="4">4</a>-->
+<!--                        <a href="#" title="Next Page">Next &raquo;</a><a href="#" title="Last Page">Last &raquo;</a>-->
                     </div> <!-- End .pagination -->
                     <div class="clear"></div>
                 </td>
@@ -95,7 +98,7 @@ $this->load->view('backend/layouts/shortcut');
                     <tr>
                         <td><input type="checkbox" name="checkbox[]" value="<?= $row['id']?>"/></td>
                         <?php
-                            echo '<td hidden>' . $row['id'] . '</td>';
+                            echo '<td>' . $row['id'] . '</td>';
                             echo '<td>' . $row['title'] . '</td>';
                             echo '<td>' . $row['description'] . '</td>';
                             if($row['publish'] == 'published')

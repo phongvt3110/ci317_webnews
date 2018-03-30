@@ -24,8 +24,8 @@ class CategoriesModel extends CI_Model {
         return $this->db->get($this->tablename)->result_array();
     }
 
-    public function getOffsetLimit($offset, $limit){
-        return $this->db->get($this->tablename)->limit($limit, $offset)->result_array();
+    public function getpage($offset, $limit){
+        return $this->db->order_by('id','asc')->limit($limit, $offset)->get($this->tablename)->result_array();
     }
 
     public function find($id){

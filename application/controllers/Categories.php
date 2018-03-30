@@ -33,18 +33,52 @@ class Categories extends CI_Controller {
         }
     }
 
-    public function listcat($page = 0){
+    public function listcat($currentpage = 1){
         if($this->session->has_userdata('user')){
             $this->load->library('pagination');
             $data['user'] = $this->session->userdata('user');
             $data['content'] = 'backend/simpla-admin/categories/listcat';
             $data['active'] = 'admin-categories';
             $data['item_active'] = 'categories-list';
-            $data['categories'] = $this->CategoriesModel->get();  //$this->db->get('categories')->result_array();
             $pagingconfig['base_url'] = 'http://news.dev/admin/categories/listcat/';
             $pagingconfig['total_rows'] = $this->CategoriesModel->total();
-            $pagingconfig['per_page'] = 5;
             $pagingconfig['use_page_numbers'] = TRUE;
+            $page = $pagingconfig['per_page'] = 5;
+
+            $pagingconfig['full_tag_open'] = '<div class="pagination">';
+            $pagingconfig['full_tag_close'] = '</div>';
+
+            $pagingconfig['first_link'] = '&laquo; First';
+            $pagingconfig['first_tag_open'] = '';
+            $pagingconfig['first_tag_close'] = '';
+
+            $pagingconfig['last_link'] = 'Last &raquo;';
+            $pagingconfig['last_tag_open'] = '';
+            $pagingconfig['last_tag_close'] = '';
+
+            $pagingconfig['next_link'] = 'Next &raquo;';
+            $pagingconfig['next_tag_open'] = '';
+            $pagingconfig['next_tag_close'] = '>';
+
+            $pagingconfig['prev_link'] = '&laquo; Previous';
+            $pagingconfig['prev_tag_open'] = '';
+            $pagingconfig['prev_tag_close'] = '';
+
+            $pagingconfig['cur_tag_open'] = '<a class="number current">';
+            $pagingconfig['cur_tag_close'] = '</a>';
+
+            $pagingconfig['num_tag_open'] = '';
+            $pagingconfig['num_tag_close'] = '';
+
+            if($currentpage < 1){
+                $currentpage = 1;
+                redirect('admin/categories/listcat/'.$currentpage);
+            }
+            if($currentpage > ceil($pagingconfig['total_rows']/$page)){
+                $currentpage =  ceil($pagingconfig['total_rows']/$page);
+                redirect('admin/categories/listcat/'. $currentpage);
+            }
+            $data['categories'] = $this->CategoriesModel->getpage(($currentpage-1)*$page, $page);
             $this->pagination->initialize($pagingconfig);
             $data['listcategories'] = $this->pagination->create_links();
             $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
@@ -82,12 +116,13 @@ class Categories extends CI_Controller {
                     $this->session->set_flashdata('flashdata_message',$flag);
                 }
             }
-            $data['user'] = $this->session->userdata('user');
-            $data['content'] = 'backend/simpla-admin/categories/listcat';
-            $data['active'] = 'admin-categories';
-            $data['item_active'] = 'categories-list';
-            $data['categories'] = $this->CategoriesModel->get();  //$this->db->get('categories')->result_array();
-            $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
+//            $data['user'] = $this->session->userdata('user');
+//            $data['content'] = 'backend/simpla-admin/categories/listcat';
+//            $data['active'] = 'admin-categories';
+//            $data['item_active'] = 'categories-list';
+//            $data['categories'] = $this->CategoriesModel->get();
+//            $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
+            redirect('admin/categories/listcat');
         } else {
             redirect('admin/login');
         }
