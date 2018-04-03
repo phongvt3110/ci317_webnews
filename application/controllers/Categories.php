@@ -91,6 +91,8 @@ class Categories extends CI_Controller {
         if($this->session->has_userdata('user')){
             $submit = $this->input->post('submit');
             $action = $this->input->post('action');
+            $redirect = $this->input->post('redirect');
+            $redirect = (isset($redirect) && !empty($redirect))? base64_decode($redirect) : 'admin/categories/listcat';
             if(isset($submit) && $submit == 'Apply to selected'){
                 $checkboxlist = $this->input->post('checkbox');
                 if($action == 'delete'){
@@ -122,7 +124,7 @@ class Categories extends CI_Controller {
 //            $data['item_active'] = 'categories-list';
 //            $data['categories'] = $this->CategoriesModel->get();
 //            $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
-            redirect('admin/categories/listcat');
+            redirect($redirect);
         } else {
             redirect('admin/login');
         }
@@ -135,7 +137,7 @@ class Categories extends CI_Controller {
             $data['active'] = 'admin-categories';
             $data['item_active'] = 'categories-add';
             if($this->input->post('submit') == 'Thêm mới'){
-                $this->form_validation->set_rules('title', 'Tiêu đề', 'trim|required|min_length[5]|max_length[255]|callback__title');
+                $this->form_validation->set_rules('title', 'Tiêu đề', 'trim|required|min_length[3]|max_length[255]|callback__title');
                 $this->form_validation->set_rules('description', 'Mô tả chung', 'trim|required|min_length[5]|max_length[255]');
                 if ($this->form_validation->run() == true)
                 {
@@ -149,7 +151,8 @@ class Categories extends CI_Controller {
                 }
             } else if($this->input->post('submit') == 'Cập nhật') {
                 $id = $this->input->post('id');
-                $this->form_validation->set_rules('title', 'Tiêu đề', 'trim|required|min_length[5]|max_length[255]|callback__title');
+                $r = $this->input->post('redirect');
+                $this->form_validation->set_rules('title', 'Tiêu đề', 'trim|required|min_length[3]|max_length[255]|callback__title');
                 $this->form_validation->set_rules('description', 'Mô tả chung', 'trim|required|min_length[5]|max_length[255]');
                 if ($this->form_validation->run() == true)
                 {
@@ -158,13 +161,15 @@ class Categories extends CI_Controller {
                     $updated_at  = date('Y-m-d H:i:s');
                     $flag = $this->CategoriesModel->update(['id' => $id,'title' => $title,'description' => $description, 'updated_at' => $updated_at]);
                     $this->session->set_flashdata('flashdata_message',$flag);
-                    redirect('admin/categories/listcat');
+                    if(isset($r)) redirect(base64_decode($r)); else
+                        redirect('admin/categories/listcat');
                 } else {
                     $cat = $this->CategoriesModel->find($id);
                     $data['content'] = 'backend/simpla-admin/categories/add';
                     $data['active'] = 'admin-categories';
                     $data['mode'] = 'edit';
                     $data['cat'] = (array)$cat;
+                    if(isset($r)) $data['redirect'] = $r;
                     $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
                 }
             } else {
@@ -177,6 +182,7 @@ class Categories extends CI_Controller {
 
     public function edit(){
         if($this->session->has_userdata('user')){
+            $r = $this->input->get('r');
             $data['user'] = $this->session->userdata('user');
             $id = $this->input->get('id');
             $cat = $this->CategoriesModel->find($id);
@@ -184,7 +190,33 @@ class Categories extends CI_Controller {
             $data['active'] = 'admin-categories';
             $data['mode'] = 'edit';
             $data['cat'] = (array)$cat;
+            if(isset($r)) $data['redirect'] = $r;
             $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
+        } else {
+            redirect('admin/login');
+        }
+    }
+
+    public function togglepushlish($field = '', $id = 0 , $value = ''){
+        if($this->session->has_userdata('user')){
+            $r = $this->input->get('r');
+            $data['user'] = $this->session->userdata('user');
+            $cat = $this->CategoriesModel->find($id);
+            $data['content'] = 'backend/simpla-admin/categories/listcat';
+            $data['active'] = 'admin-categories';
+            $data['mode'] = 'edit';
+            if(!isset($cat) || count($cat) == 0) {
+                $flag = [
+                    'type' => 'error',
+                    'message' => 'Danh muc khong ton tai'
+                ];
+                $this->session->set_flashdata('flashdata_message',$flag);
+                redirect(base64_decode($r));
+            }
+            $data['cat'] = (array)$cat;
+            $flag = $this->CategoriesModel->set($field, $cat->id, $value);
+            $this->session->set_flashdata('flashdata_message',$flag);
+            redirect(base64_decode($r));
         } else {
             redirect('admin/login');
         }
@@ -192,26 +224,31 @@ class Categories extends CI_Controller {
 
     public function delete($id = 0){
         if($this->session->has_userdata('user')){
+            $r = $this->input->get('r');
             $cat = $this->CategoriesModel->find($id);
             $submit = $this->input->post('submit');
             if(isset($cat) && count($cat) >0){
                 if(isset($submit)){
+                    $redirect = $this->input->post('redirect');
                     if($submit == 'Xóa danh mục'){
                         $flag = $this->CategoriesModel->delete($cat->id);
                         $this->session->set_flashdata('flashdata_message',$flag);
-                        redirect('admin/categories/listcat');
+                        if(isset($redirect)) redirect(base64_decode($redirect)); else
+                            redirect('admin/categories/listcat');
                     } else if($submit == 'Hủy bỏ'){
                         $flag = [
                             'type' => 'successful',
                             'message' => 'Ban da huy thao tac xoa danh muc'
                         ];
                         $this->session->set_flashdata('flashdata_message',$flag);
-                        redirect('admin/categories/listcat');
+                        if(isset($redirect)) redirect(base64_decode($redirect)); else
+                            redirect('admin/categories/listcat');
                     }
                 } else {
                     $data['user'] = $this->session->userdata('user');
                     $data['cat'] = (array)$cat;
                     $data['content'] = 'backend/simpla-admin/categories/delete';
+                    if(isset($r)) $data['redirect'] = $r;
                     $this->load->view('backend/layouts/main-layout', isset($data)?$data: null);
                 }
             } else {

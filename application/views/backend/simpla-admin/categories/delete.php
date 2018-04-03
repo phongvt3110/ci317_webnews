@@ -17,6 +17,7 @@
     <div class="content-box-content">
         <form action="categories/delete/<?= $cat['id'] ?>" method="post">
             <fieldset>
+                <input type="hidden" name="redirect" value="<?= isset($redirect)?$redirect:null?>">
                 <p>
                     <label>Title</label>
                     <input disabled="disabled" class="text-input large-input" type="text" id="large-input" name="title" value="<?= set_value('title',isset($cat)?$cat['title']:'')?>"/>

@@ -1,3 +1,15 @@
+<?php
+    function fullurl($use_forwarded_host = false){
+        $ssl = (isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')? true:false;
+        $sp = strtolower($_SERVER['SERVER_PROTOCOL']);
+        $protocol = substr($sp,0,strpos($sp,'/')) . (($ssl)?'s':'');
+        $port = $_SERVER['SERVER_PORT'];
+        $port = ((!$ssl && $port==80) || ($ssl && $port==443))? '': ':' . $port;
+        $host = (isset($use_forwarded_host) && isset($_SERVER['HTTP_X_FORWARDED_HOST']))? $_SERVER['HTTP_X_FORWARDED_HOST']: (isset($_SERVER['HTTP_HOST'])?$_SERVER['HTTP_HOST']:null);
+        $host = isset($host)? $host : $_SERVER['SERVER_NAME'] . $port;
+        return $protocol . '://' . $host . $_SERVER['REQUEST_URI'];
+    }
+?>
 <!-- Page Head -->
 <h2>List danh mục</h2>
 <p id="page-intro">What would you like to do?</p>
@@ -19,6 +31,7 @@ $this->load->view('backend/layouts/shortcut');
 
     <div class="content-box-content">
         <form action="admin/categories/action" method="post">
+            <input type="hidden" name="redirect" value="<?= base64_encode(fullurl())?>">
         <?php
             $flagdata_message = $this->session->flashdata('flashdata_message');
             if(isset($flagdata_message) && count($flagdata_message)){
@@ -49,7 +62,6 @@ $this->load->view('backend/layouts/shortcut');
                 <thead>
                 <tr>
                     <th><input class="check-all" type="checkbox"/></th>
-                    <th>ID</th>
                     <th>Title</th>
                     <th>Description</th>
                     <th>Publish</th>
@@ -63,7 +75,7 @@ $this->load->view('backend/layouts/shortcut');
             ?>
             <tfoot>
             <tr>
-                <td colspan="6">
+                <td colspan="7">
                     <div class="bulk-actions align-left">
                         <select name="action" id="select-action">
                             <option value="">Choose an action...</option>
@@ -74,17 +86,7 @@ $this->load->view('backend/layouts/shortcut');
                         <a class="button" href="#" id="link-submit">Apply to selected</a>
                         <input style="display: none" id="btn-submit" type="submit" name="submit" value="Apply to selected" />
                     </div>
-                    <?php echo isset($listcategories)? $listcategories : ''; ?>
-                    <div class="pagination">
-
-<!--                        <a href="#" title="First Page">&laquo; First</a>-->
-<!--                        <a href="#" title="Previous Page">&laquo; Previous</a>-->
-<!--                        <a href="#" class="number" title="1">1</a>-->
-<!--                        <a href="#" class="number" title="2">2</a>-->
-<!--                        <a href="#" class="number current" title="3">3</a>-->
-<!--                        <a href="#" class="number" title="4">4</a>-->
-<!--                        <a href="#" title="Next Page">Next &raquo;</a><a href="#" title="Last Page">Last &raquo;</a>-->
-                    </div> <!-- End .pagination -->
+                    <?= isset($listcategories)? $listcategories : '' ?>
                     <div class="clear"></div>
                 </td>
             </tr>
@@ -97,33 +99,36 @@ $this->load->view('backend/layouts/shortcut');
             ?>
                     <tr>
                         <td><input type="checkbox" name="checkbox[]" value="<?= $row['id']?>"/></td>
-                        <?php
-                            echo '<td>' . $row['id'] . '</td>';
-                            echo '<td>' . $row['title'] . '</td>';
-                            echo '<td>' . $row['description'] . '</td>';
-                            if($row['publish'] == 'published')
-                                echo '<td><img src="public/simpla-admin/resources/images/icons/tick_circle.png"/></td>';
-                            else
-                                echo '<td><img src="public/simpla-admin/resources/images/icons/cross_circle.png"/></td>';
-                            echo '<td>' . date('H:i:s d/m/Y',strtotime($row['created_at'])) . '</td>';
-                            echo '<td>' . DateTime::createFromFormat('Y-m-d H:i:s',$row['updated_at'])->format('H:i:s d/m/Y'). '</td>';
-                        ?>
+
+                            <td hidden> <?=$row['id'] ?> </td>
+                            <td> <?= $row['title'] ?> </td>
+                            <td> <?= $row['description'] ?> </td>
+                        <td>
+                            <a href="categories/togglepushlish/publish/<?= $row['id']?>/<?= ($row['publish'] == 'published')? 'unpublished' : 'published' ?>?r=<?= base64_encode(fullurl())?>">
+                                <img src="public/simpla-admin/resources/images/icons/<?= ($row['publish'] == 'published')? 'tick_circle.png' : 'cross_circle.png' ?>"/>
+                            </a>
+                        </td>
+
+                        <td><?= date('H:i:s d/m/Y',strtotime($row['created_at'])) ?></td>
+                        <td><?=DateTime::createFromFormat('Y-m-d H:i:s',$row['updated_at'])->format('H:i:s d/m/Y') ?></td>
                         <td>
                             <!-- Icons -->
-                            <a href="categories/edit?id=<?= $row['id']?>" title="Edit"><img src="public/simpla-admin/resources/images/icons/pencil.png"
-                                                          alt="Edit"/></a>
-                            <a href="categories/delete/<?= $row['id']?>" title="Delete"><img src="public/simpla-admin/resources/images/icons/cross.png"
-                                                            alt="Delete"/></a>
-                            <a href="#" title="Edit Meta"><img
-                                        src="public/simpla-admin/resources/images/icons/hammer_screwdriver.png"
-                                        alt="Edit Meta"/></a>
+                            <a href="categories/edit?id=<?= $row['id']?>&r=<?= base64_encode(fullurl())?>" title="Edit">
+                                <img src="public/simpla-admin/resources/images/icons/pencil.png" alt="Edit"/>
+                            </a>
+                            <a href="categories/delete/<?= $row['id']?>?r=<?= base64_encode(fullurl())?>" title="Delete">
+                                <img src="public/simpla-admin/resources/images/icons/cross.png" alt="Delete"/>
+                            </a>
+                            <a href="#" title="Edit Meta">
+                                <img src="public/simpla-admin/resources/images/icons/hammer_screwdriver.png" alt="Edit Meta"/>
+                            </a>
                         </td>
                     </tr>
                     <?php
                 }
             } else {
-                echo '<tr><td colspan="6"> Khong co du lieu </td></tr>';
-            ?>
+                ?>
+                <tr><td colspan="6"> Khong co du lieu </td></tr>
             <?php
             }
             ?>

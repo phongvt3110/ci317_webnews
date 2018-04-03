@@ -27,6 +27,7 @@
                         echo form_input($data);
                     }
                 ?>
+                <input type="hidden" name="redirect" value="<?= isset($redirect)?$redirect:null?>">
                 <p>
                     <label>Title</label>
                     <input class="text-input large-input" type="text" id="large-input" name="title" value="<?= set_value('title',isset($cat)?$cat['title']:'')?>"/>

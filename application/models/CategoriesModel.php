@@ -62,6 +62,21 @@ class CategoriesModel extends CI_Model {
         }
     }
 
+    public function set($field, $id, $value){
+        $this->db->update($this->tablename,[$field=> $value],['id'=> $id]);
+        if($this->db->affected_rows()){
+            return [
+                'type' => 'successful',
+                'message' => 'Cap nhat du lieu thanh cong'
+            ];
+        } else {
+            return [
+                'type' => 'error',
+                'message' => 'Khong cap nhat duoc du lieu'
+            ];
+        }
+    }
+
     public function delete($id){
 //        $this->db->delete($this->tablename, ['id'=> $id]);
         $this->db->where(['id'=>$id])->delete($this->tablename);
