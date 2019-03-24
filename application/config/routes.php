@@ -50,32 +50,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-$route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+$route['404_override']                       = '';
+$route['translate_uri_dashes']               = FALSE;
 
 //frontend
 
-$route['default_controller'] = 'home/index';
-$route['full-width']         = 'home/fullwidth';
-$route['style-demo']         = 'home/styledemo';
-$route['contact']            = 'home/contact';
+$route['default_controller']                 = 'home/index';
+$route['full-width']                         = 'home/fullwidth';
+$route['style-demo']                         = 'home/styledemo';
+$route['contact']                            = 'home/contact';
 
 //backend
 
-$route['admin']         = 'admin/index';
-$route['admin/login']   = 'admin/login';
-$route['admin/signout'] = 'admin/signout';
-$route['admin/articles']      = 'articles/index';
-$route['admin/articles/add']     = 'articles/add';
-$route['admin/articles/view']    = 'articles/view';
-$route['admin/articles/listarticle']    = 'articles/listarticle';
-$route['admin/categories']     = 'categories/index';
-$route['admin/categories/listcat']    = 'categories/listcat';
+$route['admin']                              = 'admin/index';
+$route['admin/login']                        = 'admin/login';
+$route['admin/signout']                      = 'admin/signout';
+$route['admin/articles']                     = 'articles/index';
+$route['admin/articles/add']                 = 'articles/add';
+$route['admin/articles/view']                = 'articles/view';
+$route['admin/articles/listarticle']         = 'articles/listarticle';
+$route['admin/categories']                   = 'categories/index';
+$route['admin/categories/listcat']           = 'categories/listcat';
 $route['admin/categories/listcat/(:num)']    = 'categories/listcat/$1';
-$route['admin/categories/add']    = 'categories/add';
-$route['admin/categories/edit']    = 'categories/edit';
-$route['admin/categories/delete']    = 'categories/delete';
-$route['admin/categories/deletelist']    = 'categories/deletelist';
-$route['admin/categories/action']    = 'categories/applyaction';
-$route['admin/user']    = 'users/listuser';
-$route['admin/user/add']    = 'users/add';
+$route['admin/categories/add']               = 'categories/add';
+$route['admin/categories/edit']              = 'categories/edit';
+$route['admin/categories/delete']            = 'categories/delete';
+$route['admin/categories/deletelist']        = 'categories/deletelist';
+$route['admin/categories/action']            = 'categories/applyaction';
+$route['admin/user']                         = 'users/listuser';
+$route['admin/user/add']                     = 'users/add';
+$route[LOGIN_PAGE]                           = 'examples/login';
