@@ -60,7 +60,14 @@ class Home extends CI_Controller {
 
     public function test(){
         echo base_url();
-        echo '<br>current url:' . current_url();
+        echo '<br>current url:' . current_url() . '<br>';
+        $detect = new Mobile_Detect();
+        if($detect->isMobile()) {
+            echo '<br>Is_Mobile';
+        }
+        if($detect->isTablet()) {
+            echo '<br> Is_Tablet';
+        }
     }
 
     public function params($params= null){

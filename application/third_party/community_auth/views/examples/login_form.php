@@ -84,10 +84,7 @@ if( ! isset( $on_hold_message ) )
 				Can't access your account?
 			</a>
 		</p>
-
-
-		<input type="submit" name="submit" value="Login" id="submit_button"  />
-
+		<input type="submit" class="btn btn-success" name="submit" value="Login" id="submit_button"  />
 	</div>
 </form>
 

@@ -27,6 +27,8 @@
 			echo $final_head;
 		}
 	?>
+    <link rel="stylesheet" href="public/bootstrap-4.3.1/css/bootstrap.min.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="public/bootstrap-4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div id="menu">
