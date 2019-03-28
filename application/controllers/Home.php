@@ -62,11 +62,13 @@ class Home extends CI_Controller {
         echo base_url();
         echo '<br>current url:' . current_url() . '<br>';
         $detect = new Mobile_Detect();
-        if($detect->isMobile()) {
-            echo '<br>Is_Mobile';
-        }
-        if($detect->isTablet()) {
-            echo '<br> Is_Tablet';
+        if($detect->isMobile() || $detect->isTablet()) {
+            echo '<br>Is_Mobile or Is_Tablet';
+        } else echo '<br>IsDesktop<br>';
+        if($this->agent->is_mobile()) {
+            echo '<br>is_mobile<br>';
+        } else {
+            echo '<br>is_desktop';
         }
     }
 
