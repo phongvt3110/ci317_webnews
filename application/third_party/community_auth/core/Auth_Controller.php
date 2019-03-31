@@ -125,7 +125,7 @@ class Auth_Controller extends CI_Controller {
 			$this->load->vars( $http_user_data );
 		}
 
-		//$this->output->enable_profiler();
+//		$this->output->enable_profiler();
 	}
 
 	// --------------------------------------------------------------

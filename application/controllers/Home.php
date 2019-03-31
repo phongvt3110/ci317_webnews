@@ -1,7 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+require_once APPPATH . 'core/Base_Controller.php';
+
+class Home extends Base_Controller {
 
     /**
      * Index Page for this controller.
@@ -19,13 +21,10 @@ class Home extends CI_Controller {
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
 
-    protected $divice_detect;
-
     public function __construct(){
         parent::__construct();
         $this->load->helper('url');
 //        $this->load->database();
-        $this->divice_detect = new Mobile_Detect();
     }
 
     public function __destruct()
@@ -68,14 +67,21 @@ class Home extends CI_Controller {
     public function test(){
         echo base_url();
         echo '<br>current url:' . current_url() . '<br>';
-        $detect = new Mobile_Detect();
-        if($detect->isMobile() || $detect->isTablet()) {
-            echo '<br>Is_Mobile or Is_Tablet';
-        } else echo '<br>IsDesktop<br>';
-        if($this->agent->is_mobile()) {
-            echo '<br>is_mobile<br>';
+        $isMobile = $this->device_detect->isMobile();
+        $isTablet = $this->device_detect->isTablet();
+
+        if($isMobile && !$isTablet){
+            echo '<br><h3 style="font-size: 40px">IsMobile</h3><br>';
+        } elseif($isTablet){
+            echo '<br><h3 style="font-size: 40px">IsTablet</h3><br>';
         } else {
-            echo '<br>is_desktop';
+            echo '<br><h3 style="font-size: 40px">IsDesktop</h3><br>';
+        }
+        echo '<br>================================================================================<br>';
+        if($this->agent->is_mobile()) {
+            echo '<br><h3 style="font-size: 40px">is_mobile</h3><br>';
+        } else {
+            echo '<br><h3 style="font-size: 40px">is_desktop</h3>';
         }
     }
 
