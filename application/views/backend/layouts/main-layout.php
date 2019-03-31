@@ -2,12 +2,15 @@
 
 <html>
 <head>
-
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <base href="<?php echo base_url();?>"/>
     <title>Administrator</title>
 
     <!--                       CSS                       -->
+
+<!--    <link rel="stylesheet" href="public/bootstrap-4.3.1/css/bootstrap.min.css"/>-->
+<!--    <link rel="stylesheet" href="public/bootstrap-4.3.1/css/bootstrap-grid.min.css"/>-->
+<!--    <link rel="stylesheet" href="public/bootstrap-4.3.1/css/bootstrap-reboot.min.css"/>-->
 
     <!-- Reset Stylesheet -->
     <link rel="stylesheet" href="public/simpla-admin/resources/css/reset.css" type="text/css" media="screen" />
@@ -55,42 +58,40 @@
 
     <!--[if IE 6]>
     <script type="text/javascript" src="public/simpla-admin/resources/scripts/DD_belatedPNG_0.0.7a.js"></script>
-    <script type="text/javascript">
-        DD_belatedPNG.fix('.png_bg, img, li');
-    </script>
+    <script type="text/javascript">DD_belatedPNG.fix('.png_bg, img, li');</script>
     <![endif]-->
-
+    <!--    <script type="text/javascript" src="public/bootstrap-4.3.1/js/bootstrap.js"></script>-->
 </head>
 
 <body>
-<div id="body-wrapper"> <!-- Wrapper for the radial gradient background -->
-    <?php $this->load->view('backend/layouts/sidebar');?>
-    <div id="main-content"> <!-- Main Content Section with everything -->
+    <div id="body-wrapper"> <!-- Wrapper for the radial gradient background -->
+        <?php $this->load->view('backend/layouts/sidebar');?>
+        <div id="main-content"> <!-- Main Content Section with everything -->
 
-        <noscript>
-            <div class="notification error png_bg">
-                <div>
-                    Javascript is disabled or is not supported by your browser.
-                    Please <a href="http://browsehappy.com/" title="Upgrade to a better browser">upgrade</a> your browser
-                    or <a href="http://www.google.com/support/bin/answer.py?answer=23852"
-                          title="Enable Javascript in your browser">enable</a>
-                    Javascript to navigate the interface properly.
-                    Download From <a href="http://www.exet.tk">exet.tk</a>
+            <noscript>
+                <div class="notification error png_bg">
+                    <div>
+                        Javascript is disabled or is not supported by your browser.
+                        Please <a href="http://browsehappy.com/" title="Upgrade to a better browser">upgrade</a> your browser
+                        or <a href="http://www.google.com/support/bin/answer.py?answer=23852"
+                              title="Enable Javascript in your browser">enable</a>
+                        Javascript to navigate the interface properly.
+                        Download From <a href="http://www.exet.tk">exet.tk</a>
+                    </div>
                 </div>
-            </div>
-        </noscript>
-            <?php if(isset($content)) $this->load->view($content);?>
-        <div class="clear"></div>
+            </noscript>
+                <?php if(isset($content)) $this->load->view($content);?>
+            <div class="clear"></div>
 
-        <div id="footer">
-            <small> <!-- Remove this notice or replace it with whatever you want -->
-                <p>Address: Khuong dinh, Thanh Xuan, Hanoi</p>
-                <p>Hot line: 0983397580</p>
-                &#169; Copyright 2009 - <?= date('d/m/Y')?> iCi Co., Ltd | Powered by <a href="http://themeforest.net/item/simpla-admin-flexible-user-friendly-admin-skin/46073">iCi Administrators group</a> | <a href="#">Top</a>
-            </small>
-        </div><!-- End #footer -->
+            <div id="footer">
+                <small> <!-- Remove this notice or replace it with whatever you want -->
+                    <p>Address: Khuong dinh, Thanh Xuan, Hanoi</p>
+                    <p>Hot line: 0983397580</p>
+                    &#169; Copyright 2009 - <?= date('d/m/Y')?> iCi Co., Ltd | Powered by <a href="http://themeforest.net/item/simpla-admin-flexible-user-friendly-admin-skin/46073">iCi Administrators group</a> | <a href="#">Top</a>
+                </small>
+            </div><!-- End #footer -->
 
-    </div> <!-- End #main-content -->
-</div>
+        </div> <!-- End #main-content -->
+    </div>
 </body>
 </html>

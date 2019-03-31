@@ -19,10 +19,13 @@ class Home extends CI_Controller {
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
 
+    protected $divice_detect;
+
     public function __construct(){
         parent::__construct();
         $this->load->helper('url');
 //        $this->load->database();
+        $this->divice_detect = new Mobile_Detect();
     }
 
     public function __destruct()
@@ -37,7 +40,11 @@ class Home extends CI_Controller {
         $data['footer'] = 'layouts/footer';
         $data['header'] = 'layouts/header';
         $data['active'] = 'home-page';
-        $this->load->view('layouts/main_layout',isset($data)? $data : null);
+        if ($this->divice_detect->isMobile() || $this->divice_detect->isTablet()) {
+            $this->load->view('mobile/backend/layouts/testmobile', isset($data)? $data : null);
+        } else {
+            $this->load->view('layouts/main_layout',isset($data)? $data : null);
+        }
     }
 
     public function fullwidth(){

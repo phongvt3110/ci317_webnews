@@ -40,7 +40,7 @@ class Categories extends CI_Controller {
             $data['content'] = 'backend/simpla-admin/categories/listcat';
             $data['active'] = 'admin-categories';
             $data['item_active'] = 'categories-list';
-            $pagingconfig['base_url'] = 'http://news.dev/admin/categories/listcat/';
+            $pagingconfig['base_url'] = 'admin/categories/listcat/';
             $pagingconfig['total_rows'] = $this->CategoriesModel->total();
             $pagingconfig['use_page_numbers'] = TRUE;
             $page = $pagingconfig['per_page'] = 5;
@@ -58,7 +58,7 @@ class Categories extends CI_Controller {
 
             $pagingconfig['next_link'] = 'Next &raquo;';
             $pagingconfig['next_tag_open'] = '';
-            $pagingconfig['next_tag_close'] = '>';
+            $pagingconfig['next_tag_close'] = '';
 
             $pagingconfig['prev_link'] = '&laquo; Previous';
             $pagingconfig['prev_tag_open'] = '';

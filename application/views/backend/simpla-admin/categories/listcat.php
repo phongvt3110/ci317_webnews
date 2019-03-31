@@ -100,7 +100,7 @@ $this->load->view('backend/layouts/shortcut');
                     <tr>
                         <td><input type="checkbox" name="checkbox[]" value="<?= $row['id']?>"/></td>
 
-                            <td hidden> <?=$row['id'] ?> </td>
+                            <td hidden> <?= $row['id'] ?> </td>
                             <td> <?= $row['title'] ?> </td>
                             <td> <?= $row['description'] ?> </td>
                         <td>
@@ -110,13 +110,13 @@ $this->load->view('backend/layouts/shortcut');
                         </td>
 
                         <td><?= date('H:i:s d/m/Y',strtotime($row['created_at'])) ?></td>
-                        <td><?=DateTime::createFromFormat('Y-m-d H:i:s',$row['updated_at'])->format('H:i:s d/m/Y') ?></td>
+                        <td><?= DateTime::createFromFormat('Y-m-d H:i:s',$row['updated_at'])->format('H:i:s d/m/Y') ?></td>
                         <td>
                             <!-- Icons -->
-                            <a href="categories/edit?id=<?= $row['id']?>&r=<?= base64_encode(fullurl())?>" title="Edit">
+                            <a href="categories/edit?id=<?= $row['id']?>&r=<?= base64_encode(fullurl()) ?>" title="Edit">
                                 <img src="public/simpla-admin/resources/images/icons/pencil.png" alt="Edit"/>
                             </a>
-                            <a href="categories/delete/<?= $row['id']?>?r=<?= base64_encode(fullurl())?>" title="Delete">
+                            <a href="categories/delete/<?= $row['id']?>?r=<?= base64_encode(fullurl()) ?>" title="Delete">
                                 <img src="public/simpla-admin/resources/images/icons/cross.png" alt="Delete"/>
                             </a>
                             <a href="#" title="Edit Meta">
