@@ -8,15 +8,21 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Users extends CI_Controller{
+require_once APPPATH . 'core/Base_Controller.php';
+
+class Users extends Base_Controller{
     public function __construct() {
         parent::__construct();
         $this->load->model('UserModel');
     }
-    public function listuser(){
+    public function __destruct() {
+        parent::__destruct();
+        // TODO: Implement __destruct() method.
+    }
+    public function listuser() {
         echo 'list';
     }
-    public function add($user){
+    public function add() {
         echo 'add user';
     }
 }

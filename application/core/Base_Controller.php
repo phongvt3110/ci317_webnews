@@ -28,6 +28,7 @@ class Base_Controller extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->device_detect = new Mobile_Detect();
+        $this->lang->load('custom');
     }
 
     public function __destruct()

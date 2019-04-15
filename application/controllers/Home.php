@@ -21,32 +21,31 @@ class Home extends Base_Controller {
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
 
-    public function __construct(){
+    public function __construct() {
         parent::__construct();
         $this->load->helper('url');
 //        $this->load->database();
     }
 
-    public function __destruct()
-    {
+    public function __destruct() {
+        parent::__destruct();
         // TODO: Implement __destruct() method.
     }
 
-    public function index()
-    {
+    public function index() {
         $data['meta_title'] = 'Home page';
         $data['content'] = 'layouts/content';
         $data['footer'] = 'layouts/footer';
         $data['header'] = 'layouts/header';
         $data['active'] = 'home-page';
-        if ($this->divice_detect->isMobile() || $this->divice_detect->isTablet()) {
+        if ($this->device_detect->isMobile() || $this->device_detect->isTablet()) {
             $this->load->view('mobile/backend/layouts/testmobile', isset($data)? $data : null);
         } else {
             $this->load->view('layouts/main_layout',isset($data)? $data : null);
         }
     }
 
-    public function fullwidth(){
+    public function fullwidth() {
         $data['meta_title'] = 'Full width';
         $data['content'] = 'home/pages/full-width';
         $data['footer'] = 'layouts/footer';
@@ -55,7 +54,7 @@ class Home extends Base_Controller {
         $this->load->view('layouts/main_layout',isset($data)? $data : null);
     }
 
-    public function styledemo(){
+    public function styledemo() {
         $data['meta_title'] = 'Style demo';
         $data['content'] = 'home/pages/style-demo';
         $data['footer'] = 'layouts/footer';
@@ -64,7 +63,7 @@ class Home extends Base_Controller {
         $this->load->view('layouts/main_layout',isset($data)? $data : null);
     }
 
-    public function test(){
+    public function test() {
         echo base_url();
         echo '<br>current url:' . current_url() . '<br>';
         $isMobile = $this->device_detect->isMobile();
@@ -87,7 +86,7 @@ class Home extends Base_Controller {
         echo $this->my_string->create_url_slug('Hãy sử    dụng  tiếng  việt có  dấu nhé');
     }
 
-    public function params($params= null){
+    public function params($params= null) {
        $data = json_decode(base64_decode($params),true);
        print_r($data);
        echo '<br>';
@@ -95,13 +94,13 @@ class Home extends Base_Controller {
        echo '<br>' . $data['name'];
         //echo base64_encode(json_encode(['id'=>1234,'name'=>'kunsipxanh']));
     }
-    public function paramget(){
+    public function paramget() {
         $id = $this->input->get('id');
         $name = $this->input->get('name');
         if(isset($id)) echo $id; else echo 'id is null';
         if(isset($name)) echo $name; else echo 'name is null';
     }
-    public function testdb(){
+    public function testdb() {
         $result = $this->db->select('title,description,content')
                         ->from('articles')
                         ->where(['id'=> 2])
@@ -115,7 +114,7 @@ class Home extends Base_Controller {
         $this->output->enable_profiler(true);
     }
 
-    public function testemail(){
+    public function testemail() {
         $this->load->library('email');
         date_default_timezone_set('Asia/Ho_Chi_Minh');
 

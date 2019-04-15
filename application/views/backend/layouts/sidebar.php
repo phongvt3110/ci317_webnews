@@ -8,7 +8,7 @@
         <h3 id="logo-text">QUẢN TRỊ HỆ THỐNG</h3>
         <!-- Sidebar Profile links -->
         <div id="profile-links">
-            <p>Hello, <a href="#" title="Edit your profile"><?= isset($user)?$user['email']:'Anonymous'?></a><br />
+            <p><?= lang('hello') ?>, <a href="#" title="Edit your profile"><?= isset($user)?$user['email']:'Anonymous'?></a><br />
             you have <a href="#messages" rel="modal" title="3 Messages">3 Messages</a></p>
             <a href="home" title="View the Site">View the Site</a> | <a href="admin/signout" title="Sign Out">Sign Out</a>
         </div>
@@ -77,8 +77,8 @@
             <li>
                 <a href="#" class="nav-top-item">Users</a>
                 <ul>
-                    <li><a href="#">List Users</a></li>
-                    <li><a href="#">New User</a></li>
+                    <li><a href="admin/user">List Users</a></li>
+                    <li><a href="admin/user/add">New User</a></li>
                 </ul>
             </li>
 
