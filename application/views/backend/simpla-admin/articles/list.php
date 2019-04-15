@@ -63,8 +63,8 @@
 
                     <td hidden><?= $row['id'] ?></td>
                     <td><?= $row['title'] ?></td>
-                    <td><?= $row['description']?></td>
-                    <td><?= $row['content'] ?></td>
+                    <td><?= htmlspecialchars(cutnchar($row['description'], 20))?></td>
+                    <td><?= htmlspecialchars(cutnchar($row['content'], 20)) ?></td>
                     <td><?= $row['catid'] ?></td>
                     <td><?= date('d/m/Y',strtotime($row['created_at'])) ?></td>
                     <td><?= DateTime::createFromFormat('Y-m-d H:i:s',$row['updated_at'])->format('d/m/Y') ?></td>

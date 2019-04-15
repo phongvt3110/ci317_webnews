@@ -83,6 +83,8 @@ class Home extends Base_Controller {
         } else {
             echo '<br><h3 style="font-size: 40px">is_desktop</h3>';
         }
+        $this->load->library('MY_string');
+        echo $this->my_string->create_url_slug('Hãy sử    dụng  tiếng  việt có  dấu nhé');
     }
 
     public function params($params= null){

@@ -14,6 +14,7 @@ class Categories extends CI_Controller {
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('CategoriesModel');
+        $this->load->library('MY_string');
     }
 
     public function __destruct()
