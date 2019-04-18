@@ -61,6 +61,11 @@ class Home extends CI_Controller {
     public function test(){
         echo base_url();
         echo '<br>current url:' . current_url();
+        echo '<br>'. APPPATH;
+        echo '<br>' . getcwd();
+        echo '<br>' .  __DIR__;
+        echo '<br>' . basename(getcwd());
+        echo '<br>' . dirname(getcwd());
     }
 
     public function params($params= null){
