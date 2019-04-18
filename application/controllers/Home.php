@@ -86,6 +86,14 @@ class Home extends Base_Controller {
         echo $this->my_string->create_url_slug('Hãy sử    dụng  tiếng  việt có  dấu nhé');
     }
 
+    public function testconfig() {
+        $this->config->load('my_config', TRUE);
+        echo $this->config->item('site_name','my_config');
+        $myconfig = $this->config->item('my_config');
+        echo '<br>' . $myconfig['protocol'];
+        print_r($myconfig);
+    }
+
     public function params($params= null) {
        $data = json_decode(base64_decode($params),true);
        print_r($data);
