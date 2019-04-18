@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/ci317_webnews/';    //'http://localhost/ci317/'
+$config['base_url'] = 'http://localhost/'. basename(getcwd()).'/';    //'http://localhost/ci317/'
 
 /*
 |--------------------------------------------------------------------------
