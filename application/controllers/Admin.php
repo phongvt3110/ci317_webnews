@@ -8,7 +8,9 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
+require_once APPPATH . 'core/Base_Controller.php';
+
+class Admin extends Base_Controller {
 
     /**
      * Index Page for this controller.
@@ -33,6 +35,7 @@ class Admin extends CI_Controller {
 
     public function __destruct()
     {
+        parent::__destruct();
         // TODO: Implement __destruct() method.
     }
 

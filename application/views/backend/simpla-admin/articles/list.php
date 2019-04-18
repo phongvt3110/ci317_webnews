@@ -60,15 +60,14 @@
                 ?>
                 <tr>
                     <td><input type="checkbox"/></td>
-                    <?php
-                    echo '<td hidden>' . $row['id'] . '</td>';
-                    echo '<td>' . $row['title'] . '</td>';
-                    echo '<td>' . $row['description'] . '</td>';
-                    echo '<td>' . $row['content'] . '</td>';
-                    echo '<td>' . $row['catid'] . '</td>';
-                    echo '<td>' . date('d/m/Y',strtotime($row['created_at'])) . '</td>';
-                    echo '<td>' . DateTime::createFromFormat('Y-m-d H:i:s',$row['updated_at'])->format('d/m/Y'). '</td>';
-                    ?>
+
+                    <td hidden><?= $row['id'] ?></td>
+                    <td><?= $row['title'] ?></td>
+                    <td><?= htmlspecialchars(cutnchar($row['description'], 20))?></td>
+                    <td><?= htmlspecialchars(cutnchar($row['content'], 20)) ?></td>
+                    <td><?= $row['catid'] ?></td>
+                    <td><?= date('d/m/Y',strtotime($row['created_at'])) ?></td>
+                    <td><?= DateTime::createFromFormat('Y-m-d H:i:s',$row['updated_at'])->format('d/m/Y') ?></td>
                     <td>
                         <!-- Icons -->
                         <a href="admin/articles/edit?id=<?= $row['id']?>" title="Edit"><img src="public/simpla-admin/resources/images/icons/pencil.png"
