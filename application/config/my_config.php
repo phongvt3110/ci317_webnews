@@ -16,6 +16,6 @@ $config['smtp_pass'] = 'password';
 $config['smtp_port'] = '25';
 
 $config['hostname'] = 'localhost';
-$config['username'] = 'root';
-$config['password'] = 'livet';
+$config['username'] = 'userci317';
+$config['password'] = 'monkey3110';
 $config['database'] = 'ci317';
