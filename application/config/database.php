@@ -74,7 +74,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $CI =& get_instance();
 $CI->config->load('my_config', TRUE);
-$usename  = $CI->config->item('username', 'my_config');
+$username  = $CI->config->item('username', 'my_config');
 $password = $CI->config->item('password', 'my_config');
 $hostname = $CI->config->item('hostname', 'my_config');
 $database = $CI->config->item('database', 'my_config');
@@ -85,7 +85,7 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => $hostname,
-	'username' => $usename,
+	'username' => $username,
 	'password' => $password,
 	'database' => $database,
 	'dbdriver' => 'mysqli',
